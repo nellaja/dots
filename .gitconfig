@@ -1,0 +1,7 @@
+[user]
+	name = AJ Allen
+	email = ajallen@outlook.com
+[core]
+	editor = helix
+[init]
+	defaultBranch = main
