@@ -1,0 +1,8 @@
+#  =====>> CLIENT CONFIGURATION 
+
+# Color configuration for windows and borders
+# Property Name         <border>  <bg>   <text>   <indicator>  <child_border>
+client.focused          $hl_high  $pine  $text    $rose        $pine
+client.focused_inactive $hl_high  $base  $subtle  $black       $black
+client.unfocused        $hl_high  $base  $subtle  $black       $black
+client.urgent           $hl_high  $love  $base    $love        $love

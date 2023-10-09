@@ -1,0 +1,131 @@
+# Typical laptop setup, with wifi, brightness, battery etc, for
+# i3/Sway.
+
+# For X11/i3, you'll want to replace calls to swaymsg with i3-msg, and
+# the sway-xkb module with the xkb module.
+
+# fonts we'll be re-using here and there
+awesome: &awesome Font Awesome 6 Free:style=solid:pixelsize=14
+awesome_brands: &awesome_brands Font Awesome 6 Brands:pixelsize=16
+
+std_underline: &std_underline {underline: { size: 2, color: 31748fff}}
+
+# This is THE bar configuration
+bar:
+  height: 31
+  location: top
+  spacing: 5
+  #margin: 7
+
+  # Default font
+  font: IBM Plex Sans:pixelsize=19
+
+  foreground: e0def4ff
+  background: 1f1d2eff
+
+
+  left:
+    - i3:
+        anchors: # Not used (directly) by f00bar; used here to avoid duplication
+          - string: &i3_common {margin: 6, on-click: "swaymsg --quiet workspace {name}"}
+          - string: &default {<<: *i3_common, text: "{name}"}
+          - focused: &focused
+              deco: {stack: [background: {color: 403d52ff}, border: {color: 1f1d2eff, size: 2}]}
+          - unfocused: &unfocused
+              deco: {stack: [background: {color: 26233aff}, border: {color: 1f1d2eff, size: 2}]}
+          - invisible: &invisible
+              deco: {stack: [background: {color: 26233aff}, border: {color: 1f1d2eff, size: 2}]}
+          - urgent: &urgent
+              foreground: 1f1d2eff
+              deco: {stack: [background: {color: eb6f92ff}, border: {color: 1f1d2eff, size: 2}]}
+        content:
+          "":
+            map:
+              conditions:
+                state == focused:   {string: {<<: [*default, *focused]}}
+                state == unfocused: {string: {<<: [*default, *unfocused]}}
+                state == invisible: {string: {<<: [*default, *invisible]}}
+                state == urgent:    {string: {<<: [*default, *urgent]}}
+          current:
+            map:
+              default:
+                string:
+                  margin: 6
+                  foreground: f6c177ff
+                  text: "{mode}"
+                  deco: {background: {color: 26233aff}}
+              conditions:
+                mode == default: {empty: {}} 
+        sort: native 
+
+    - foreign-toplevel:
+        content:
+          map:
+            conditions:
+              ~activated: {empty: {}}
+              activated:
+                - string: {text: "{app-id}", foreground: ebbcbaff, left-margin: 11}
+                - string: {text: ": {title}"}
+  center:
+    - clock:
+        time-format: "%R"
+        date-format: "%a  %b %d"
+        content:
+          string: {text: "{date}  {time}"}
+  right:  
+    - network:
+        name: enp42s0
+        content:
+          map:
+            conditions:
+              ~carrier: {empty: {}}
+              carrier:
+                map:
+                  default: {string: {text: , font: *awesome, foreground: eb6f92ff}}
+                  conditions:
+                    state == up && ipv4 != "": {string: {text: , font: *awesome}}
+#    - network:
+#        name: wlp2s0
+#        poll-interval: 1000
+#        content:
+#          map:
+#            default: {string: {text: , font: *awesome, foreground: ffffff66}}
+#            conditions:
+#              state == down: {string: {text: , font: *awesome, foreground: ff0000ff}}
+#              state == up:
+#                map:
+#                  default:
+#                    - string: {text: , font: *awesome}
+#                    - string: {text: "{ssid} {dl-speed:mb}/{ul-speed:mb} Mb/s"}
+#
+#                  conditions:
+#                    ipv4 == "":
+#                      - string: {text: , font: *awesome, foreground: ffffff66}
+#                      - string: {text: "{ssid} {dl-speed:mb}/{ul-speed:mb} Mb/s", foreground: ffffff66}
+#    - alsa:
+#        card: hw:PCH
+#        mixer: Master
+#        content:
+#          map:
+#            conditions:
+#              ~online: {string: {text: , font: *awesome, foreground: ff0000ff}}
+#              online:
+#                map:
+#                  on-click: /bin/sh -c "amixer -q sset Speaker unmute && amixer -q sset Headphone unmute && amixer -q sset Master toggle"
+#                  conditions:
+#                    muted: {string: {text: , font: *awesome, foreground: ffffff66}}
+#                    ~muted:
+#                      ramp:
+#                        tag: percent
+#                        items:
+#                          - string: {text: , font: *awesome}
+#                          - string: {text: , font: *awesome}
+#                          - string: {text: , font: *awesome}
+    - label:
+        content:
+          string:
+            on-click:
+              left: systemctl poweroff
+              right: systemctl reboot
+            text: 
+            font: *awesome

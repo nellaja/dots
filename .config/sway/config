@@ -1,0 +1,307 @@
+# SWAY CONFIG
+
+# Copy to ~/.config/sway/config 
+# Reference `man 5 sway`
+# Reference 'man 5 sway-input'
+# Reference 'man 5 sway-output'
+# Reference 'man 5 sway-bar'
+# Reference 'man 1 swaymsg'
+
+#  =====>>  VARIABLES
+
+# Set logo key as the modifier key.
+set $mod Mod4
+
+# Set home row direction keys.
+set $left h
+set $down j
+set $up k
+set $right l
+
+# Set terminal emulator.
+set $term foot
+
+# Set application launcher.
+set $menu1 tofi-run | xargs swaymsg exec --
+set $menu2 tofi-drun | xargs swaymsg exec --
+
+# Set file manager.
+set $fm thunar
+
+# Set path to wallpapers.
+set $wallpaper ~/wallpaper.png
+set $wallpaper_lock ~/wallpaper_lock.png
+
+# Set shortcut for swaylock functions.
+set $lock swaylock -f -e -i $wallpaper_lock -s fill
+
+
+# Set font variables.
+set $font_family IBM Plex Sans
+set $font_size 11
+set $bar_font_size 14
+
+# Set color scheme variables.
+include colorscheme
+
+
+#  =====>>  OUTPUT CONFIGURATION
+# Run 'swaymsg -t get_outputs' to get names of outputs
+
+# Configure wallpaper.
+output * bg $wallpaper fill $base
+
+#  =====>>  IDLE CONFIGURATION
+
+# Configure time limits for screen locking and screen poweroff.
+exec swayidle -w \
+         timeout 300 '$lock' \
+         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         before-sleep '$lock'
+
+
+#  =====>>  INPUT CONFIGURATION
+# Run 'swaymsg -t get_inputs' to get names of inputs
+
+# Hide cursor after time lapse
+seat seat0 hide_cursor 5000
+
+# Set escape key if client is captured/inhibited
+bindsym --inhibited $mod+Escape seat - pointer_constraint escape, seat - shortcuts_inhibitor disable
+
+
+#  =====>>  KEY BINDINGS 
+
+# Programs:
+
+    # Open a terminal.
+    bindsym $mod+Return exec $term
+
+    # Open the launcher.
+    bindsym $mod+space exec $menu1
+    bindsym $mod+Shift+space exec $menu2
+
+    # Open the file manager.
+    bindsym $mod+semicolon exec $fm
+
+    # Open a web browser.
+    bindsym $mod+i exec firefox
+    
+    # Screenshots.
+    bindsym $mod+g exec grim
+    bindsym $mod+Shift+g exec slurp | grim -g -
+
+# Containers:
+
+    # Kill focused window.
+    bindsym $mod+q kill
+
+    # Move focused window to scratchpad.
+    bindsym $mod+Shift+y move scratchpad
+
+    # Show scratchpad.
+    bindsym $mod+y scratchpad show
+    
+    # Move container focus.
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+    # Move the focused container around the workspace.
+    bindsym $mod+Shift+Control+$left move left
+    bindsym $mod+Shift+Control+$down move down
+    bindsym $mod+Shift+Control+$up move up
+    bindsym $mod+Shift+Control+$right move right
+    bindsym $mod+Shift+Control+Left move left
+    bindsym $mod+Shift+Control+Down move down
+    bindsym $mod+Shift+Control+Up move up
+    bindsym $mod+Shift+Control+Right move right
+
+# Workspaces:
+
+    # Switch to workspace.
+    bindsym $mod+Control+1 workspace 1
+    bindsym $mod+Control+2 workspace 2
+    bindsym $mod+Control+3 workspace 3
+    bindsym $mod+Control+4 workspace 4
+    bindsym $mod+Control+5 workspace 5
+    bindsym $mod+Control+6 workspace 6
+    bindsym $mod+Control+7 workspace 7
+    bindsym $mod+Control+8 workspace 8
+    bindsym $mod+Control+9 workspace 9
+    bindsym $mod+Control+0 workspace 10
+
+    # Cycle through workspaces.
+    bindsym $mod+Control+$left workspace prev_on_output
+    bindsym $mod+Control+$right workspace next_on_output
+    bindsym $mod+Control+Left workspace prev_on_output
+    bindsym $mod+Control+Right workspace next_on_output
+    
+    # Move focused container to workspace.
+    bindsym $mod+Shift+1 move container to workspace 1
+    bindsym $mod+Shift+2 move container to workspace 2
+    bindsym $mod+Shift+3 move container to workspace 3
+    bindsym $mod+Shift+4 move container to workspace 4
+    bindsym $mod+Shift+5 move container to workspace 5
+    bindsym $mod+Shift+6 move container to workspace 6
+    bindsym $mod+Shift+7 move container to workspace 7
+    bindsym $mod+Shift+8 move container to workspace 8
+    bindsym $mod+Shift+9 move container to workspace 9
+    bindsym $mod+Shift+0 move container to workspace 10
+
+    # Move the focused container to next workspace.
+    bindsym $mod+Shift+$left move container to workspace prev_on_output
+    bindsym $mod+Shift+$right move container to workspace next_on_output
+    bindsym $mod+Shift+Left move container to workspace prev_on_output
+    bindsym $mod+Shift+Right move container to workspace next_on_output     
+ 
+# Layout:
+
+    # Drag container holding down $mod and left mouse button; resize container with $mod and right mouse button.
+    floating_modifier $mod normal
+
+    # Toggle split direction.
+    bindsym $mod+apostrophe splitt
+    
+    # Toggle the container between tiling and floating mode.
+    bindsym $mod+Shift+u floating toggle
+
+    # Swap focus between the tiling area and the floating area.
+    bindsym $mod+u focus mode_toggle
+
+    # Toggle between fullscreen mode.
+    bindsym $mod+f fullscreen toggle
+
+    # Set border style to normal.
+    bindsym $mod+b border normal 1
+
+    # Set border style to pixel.
+    bindsym $mod+Shift+b border pixel 2
+
+    # Cycle through border styles.
+    bindsym $mod+Shift+Control+b border toggle
+
+# System:
+
+    # Reload the configuration file.
+    bindsym $mod+Shift+c reload
+
+    # Exit sway.
+    bindsym $mod+Shift+x exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+    # Lock screen.
+    bindsym $mod+Shift+Escape exec $lock
+
+#  =====>>  CUSTOM MODES
+
+bindsym $mod+w mode "window"
+mode "window" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+p mode "power"
+mode "power" {
+    bindsym Escape mode default
+    bindsym s exec systemctl poweroff
+    bindsym r exec systemctl reboot
+}
+
+bindsym $mod+m mode "music"
+mode "music" {
+    bindsym Escape mode default
+    bindsym Space exec playerctl play-pause
+    bindsym Left exec playerctl previous
+    bindsym Right exec playerctl next
+    bindsym s exec playerctl stop
+}
+
+bindsym $mod+n mode "notification"
+mode "notification" {
+    bindsym Escape mode default
+    bindsym Return exec makoctl invoke; exec makoctl dismiss; mode default
+    bindsym d exec makoctl dismiss; mode default
+    bindsym Shift+d exec makoctl dismiss -a; mode default
+}
+
+bindsym $mod+v mode "volume"
+mode "volume" {
+    bindsym Escape mode default
+    bindsym m exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    bindsym minus exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+    bindsym equal exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+    bindsym space exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+}
+
+#  =====>>  APPEARANCE
+
+# Default container layout for tiled containers.
+default_orientation auto
+
+# Initial layout for new containers in empty workspace.
+workspace_layout default
+
+# Default border settings.
+default_border pixel 2
+default_floating_border normal 2
+titlebar_border_thickness 1
+smart_borders on
+
+# Minimum size for floating windows.
+floating_minimum_size 1280 x 720
+
+# Settings for urgency hints.
+focus_on_window_activation urgent
+force_display_urgency_hint 31
+
+# Set font.
+font pango:$font_family $font_size
+
+
+#  =====>>  MISCELLANEOUS
+
+# Mouse warping.
+mouse_warping container
+
+# Xwayland support.
+xwayland enable
+
+# Import additional configuration files.
+include ~/.config/sway/conf.d/*
+
+exec_always yambar
+#exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+#exec systemd-notify --ready
+
+
+#############################################
+
+# TBD
+
+#for_window [app_id=mpv] sticky enable
+#for_window [app_id="firefox" title="Picture-in-Picture"] floating enable, sticky enable, border none
+#exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+#exec kanshi >/tmp/kanshi.log 2>&1
+#exec mako >/tmp/mako.log 2>&1
+#exec poweralertd
+#for_window [floating] border csd
+#for_window [app_id="firefox" title="Firefox — Sharing Indicator"] kill
