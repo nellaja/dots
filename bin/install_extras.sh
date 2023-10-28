@@ -228,7 +228,5 @@ enable_services
 
 # Clean up
 sudo rm -f /etc/sudoers.d/wheelnopasswd
-
-
-
-
+info_print "Installation complete. Rebooting now . . . ."
+sudo reboot now
