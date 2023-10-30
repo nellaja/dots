@@ -26,9 +26,11 @@ gpu="amd"                      # GPU manufacturer (amd or intel)[lspci | grep VG
 base_system=(base base-devel linux linux-firmware vim terminus-font git networkmanager efibootmgr zram-generator)
 
 # Essential system package group (imports from essentials_pkg file)
+curl https://raw.githubusercontent.com/nellaja/dots/main/bin/essentials_pkg
 mapfile -t essentials < essentials_pkg
 
 # System font packages (imports from fonts_pkg file)
+curl https://raw.githubusercontent.com/nellaja/dots/main/bin/fonts_pkg
 mapfile -t fonts < fonts_pkg
 
 # ------------------------------------------------------------------------------
