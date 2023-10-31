@@ -2,6 +2,7 @@
 
 set -e
 shopt -s extglob
+shopt -s lastpipe
 
 # Cleaning the TTY
 clear
@@ -26,11 +27,11 @@ gpu="amd"                      # GPU manufacturer (amd or intel)[lspci | grep VG
 base_system=(base base-devel linux linux-firmware vim terminus-font git networkmanager efibootmgr zram-generator)
 
 # Essential system package group (imports from essentials_pkg file)
-curl https://raw.githubusercontent.com/nellaja/dots/main/bin/essentials_pkg
+curl -O -s https://raw.githubusercontent.com/nellaja/dots/main/bin/essentials_pkg
 mapfile -t essentials < essentials_pkg
 
 # System font packages (imports from fonts_pkg file)
-curl https://raw.githubusercontent.com/nellaja/dots/main/bin/fonts_pkg
+curl -O -s https://raw.githubusercontent.com/nellaja/dots/main/bin/fonts_pkg
 mapfile -t fonts < fonts_pkg
 
 # ------------------------------------------------------------------------------
@@ -155,6 +156,7 @@ terminal_init() {
     sleepy 1
     
     info_print "Date/Time status is . . . ."
+    sleepy 1
     timedatectl status
     sleepy 3
 }
@@ -191,6 +193,7 @@ part_disk() {
     sleepy 2
     
     info_print "Status of the partitioned disk:"
+    sleepy 1
     fdisk -l "$device"
     sleepy 3
 }
@@ -238,7 +241,9 @@ install_base() {
     info_print "An $cpu CPU has been detected; the $cpu microcode will be installed."
     sleepy 2
     pacstrap -K /mnt "${base_system[@]}"
-    info_print "Base system installed.  Press any key to continue..."; read empty
+    info_print "Base system installed . . . ."
+
+    sleepy 5
 }
 
 
@@ -253,10 +258,7 @@ set_tz() {
     info_print "Setting the timezone to $timezone . . . ."
     arch-chroot /mnt ln -sf /usr/share/zoneinfo/"$timezone" /etc/localtime
     arch-chroot /mnt hwclock --systohc
-    sleepy 1
 
-    info_print "The current date and time is . . . ."
-    arch-chroot /mnt date
     sleepy 3
 }
 
@@ -273,14 +275,11 @@ set_locale() {
     arch-chroot /mnt sed -i "s/#$locale/$locale/g" /etc/locale.gen
     arch-chroot /mnt locale-gen
     echo "LANG=$locale" > /mnt/etc/locale.conf
-    cat /mnt/etc/locale.conf
     sleepy 2
     
     info_print "Configuring vconsole . . . ."
     echo "KEYMAP=$keymap" > mnt/etc/vconsole.conf
     echo "FONT=$font" >> mnt/etc/vconsole.conf
-    cat /mnt/etc/vconsole.conf
-
     sleepy 3
 }
 
@@ -304,12 +303,6 @@ cat > /mnt/etc/hosts <<EOF
 127.0.1.1      $hostname.localdomain     $hostname
 EOF
     sleepy 1
-
-    info_print "/etc/hostname and /etc/hosts files configured . . . ."
-    cat /mnt/etc/hostname 
-    sleepy 2
-    cat /mnt/etc/hosts
-    sleepy 2
 
     info_print "Configuring NetworkManager . . . ."
 cat > /mnt/etc/NetworkManager/conf.d/no-systemd-resolved.conf <<EOF
@@ -402,7 +395,7 @@ EOF
 mkinit_config() {
     clear
 
-    info_print " Configuring mkinitcpio . . . ."
+    info_print "Configuring mkinitcpio . . . ."
     cp /mnt/etc/mkinitcpio.conf /mnt/etc/mkinitcpio.conf.bak
 cat > /mnt/etc/mkinitcpio.conf <<EOF
 MODULES=()
@@ -524,14 +517,16 @@ install_display() {
 install_audio() {
     clear
     
-    if [ awk '{print $1}' /proc/modules | grep -q "snd_sof" ] ; then
+    awk '{print $1}' /proc/modules | grep -c snd_sof | read count_mod
+    if [ $count_mod != "0" ] ; then 
         info_print "The sof-firmware package is required for your system. Installing now . . . ."
         arch-chroot /mnt pacman -S --needed --noconfirm sof-firmware
     fi
     sleepy 2
 
     for x in "${alsa_array[@]}" ; do
-        if [ awk '{print $1}' /proc/modules | grep -q "$x" ] ; then
+        awk '{print $1}' /proc/modules | grep -c "$x" | read count_mod2
+        if [ $count_mod2 != "0" ] ; then
             info_print "The alsa-firmware package is required for your system. Installing now . . . ."
             arch-chroot /mnt pacman -S --needed --noconfirm alsa-firmware
             sleepy 2
