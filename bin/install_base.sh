@@ -182,8 +182,8 @@ part_disk() {
     fi
 
     info_print "Wiping $device . . . ."
-    wipefs -af "$device"
     sgdisk -Z "$device"
+    wipefs -af "$device"
     sleepy 2
 
     info_print "Partitioning $device . . . ."
@@ -278,8 +278,8 @@ set_locale() {
     sleepy 2
     
     info_print "Configuring vconsole . . . ."
-    echo "KEYMAP=$keymap" > mnt/etc/vconsole.conf
-    echo "FONT=$font" >> mnt/etc/vconsole.conf
+    echo "KEYMAP=$keymap" > /mnt/etc/vconsole.conf
+    echo "FONT=$font" >> /mnt/etc/vconsole.conf
     sleepy 3
 }
 
