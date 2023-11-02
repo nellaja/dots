@@ -15,13 +15,13 @@ clear
 rest=1                         # Scripting variable to control pause delay (set to 0 for no pauses; set to 1 for comfortable pauses)
 keymap="us"                    # Console keymap setting (localectl list-keymaps)
 font="ter-120b"                # Console font (ls -a /usr/share/kbd/consolefonts)
-device="/dev/nvme0n1"          # Device name for the install location (e.g., /dev/nvme0n1, /dev/sda)
+device="/dev/"          # Device name for the install location (e.g., /dev/nvme0n1, /dev/sda)
 kernel="lts"                   # Additional kernel to install (do not include linux prefix) 
 timezone="America/New_York"    # Location timezone
 locale="en_US.UTF-8"           # Locale and language variable 
-hostname="adventure"           # Machine hostname
-username="aj"                  # Main user
-gpu="amd"                      # GPU manufacturer (amd or intel)[lspci | grep VGA]    
+hostname=""           # Machine hostname
+username=""                  # Main user
+gpu=""                      # GPU manufacturer (amd or intel)[lspci | grep VGA]    
 
 # Base system package group
 base_system=(base base-devel linux linux-firmware vim terminus-font git networkmanager efibootmgr zram-generator)
@@ -183,7 +183,7 @@ part_disk() {
 
     info_print "Wiping $device . . . ."
     sgdisk -Z "$device"
-    wipefs -af "$device"
+    wipefs --all --force "$device"
     sleepy 2
 
     info_print "Partitioning $device . . . ."
@@ -357,7 +357,7 @@ EOF
     if [ -n "$kernel" ] ; then
 
 cat > /mnt/boot/loader/entries/arch-linux-"$kernel".conf <<EOF
-title Arch Linux $(kernel^^)
+title Arch Linux ${kernel^^}
 linux /vmlinuz-linux-$kernel
 initrd /$microcode_img
 initrd /initramfs-linux-$kernel.img
@@ -439,8 +439,8 @@ EOF
     sleepy 1
 
     info_print "Starting ZRAM . . . ."
-    arch-chroot /mnt systemctl daemon-reload
-    arch-chroot /mnt systemctl start /dev/zram0
+#    arch-chroot /mnt systemctl daemon-reload
+#    arch-chroot /mnt systemctl start /dev/zram0
     sleepy 3
 }
 
