@@ -117,7 +117,7 @@ not_connected() {
     sleepy 2
     
     error_print "No network connection!!!  Exiting now."
-    sleepy 1
+    sleepy 2
     error_print "This is your fault. It didn't have to be like this."
     exit 1
 }
@@ -130,7 +130,7 @@ check_connection() {
     $(ping -c 3 archlinux.org &>/dev/null) ||  not_connected
     
     info_print "Connection good!"
-    sleepy 1
+    sleepy 2
     info_print "Thank you for helping us help you help us all." && sleepy 3
 }
 
@@ -534,6 +534,7 @@ install_audio() {
         fi
     done 
 
+    clear
     info_print "Installing pipewire packages . . . ."
     arch-chroot /mnt  pacman -S --needed --noconfirm pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber gst-plugin-pipewire libpulse
     sleepy 3
@@ -551,7 +552,8 @@ install_essentials() {
     info_print "Installing system fonts . . . ."
     arch-chroot /mnt pacman -S --needed --noconfirm "${fonts[@]}"
     sleepy 2
-    
+
+    clear
     info_print "Installing essential system packages . . . ."
     arch-chroot /mnt pacman -S --needed --noconfirm "${essentials[@]}"
     sleepy 3   
