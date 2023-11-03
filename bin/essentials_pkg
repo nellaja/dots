@@ -12,7 +12,7 @@ nvme-cli
 openssh
 pacman-contrib
 pavucontrol
-rsync 
+rsync
 smartmontools
 unrar
 unzip

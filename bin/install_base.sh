@@ -209,7 +209,7 @@ format_mount() {
     
     # Format the partitions
     info_print "Formatting the root partition as ext4 . . . ."
-    mkfs.ext4 "$rootdev"
+    mkfs.ext4 -FF "$rootdev"
     sleepy 2
 
     info_print "Formatting the boot partition as fat32 . . . ."
@@ -496,10 +496,12 @@ install_display() {
     
     if [ "$gpu" == "amd" ] ; then
         info_print "Installing display drivers for an AMD GPU . . . ."
+        sleepy 2
         arch-chroot /mnt pacman -S --needed --noconfirm mesa vulkan-radeon vulkan-icd-loader libva-mesa-driver 
         arch-chroot /mnt pacman -S --needed --noconfirm lib32-mesa lib32-vulkan-radeon lib32-vulkan-icd-loader lib32-libva-mesa-driver
     else
         info_print "Installing display drivers for an Intel GPU . . . ."
+        sleepy 2
         arch-chroot /mnt pacman -S --needed --noconfirm mesa vulkan-intel vulkan-icd-loader intel-media-driver
         arch-chroot /mnt pacman -S --needed --noconfirm lib32-mesa lib32-vulkan-intel lib32-vulkan-icd-loader
     fi
@@ -520,6 +522,7 @@ install_audio() {
     awk '{print $1}' /proc/modules | grep -c snd_sof | read count_mod
     if [ $count_mod != "0" ] ; then 
         info_print "The sof-firmware package is required for your system. Installing now . . . ."
+        sleepy 2
         arch-chroot /mnt pacman -S --needed --noconfirm sof-firmware
     fi
     sleepy 2
@@ -528,6 +531,7 @@ install_audio() {
         awk '{print $1}' /proc/modules | grep -c "$x" | read count_mod2
         if [ $count_mod2 != "0" ] ; then
             info_print "The alsa-firmware package is required for your system. Installing now . . . ."
+            sleepy 2
             arch-chroot /mnt pacman -S --needed --noconfirm alsa-firmware
             sleepy 2
             break 
@@ -536,6 +540,7 @@ install_audio() {
 
     clear
     info_print "Installing pipewire packages . . . ."
+    sleepy 2
     arch-chroot /mnt  pacman -S --needed --noconfirm pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber gst-plugin-pipewire libpulse
     sleepy 3
 }
@@ -550,11 +555,13 @@ install_essentials() {
     clear
 
     info_print "Installing system fonts . . . ."
+    sleepy 2
     arch-chroot /mnt pacman -S --needed --noconfirm "${fonts[@]}"
     sleepy 2
 
     clear
     info_print "Installing essential system packages . . . ."
+    sleepy 2
     arch-chroot /mnt pacman -S --needed --noconfirm "${essentials[@]}"
     sleepy 3   
 }
