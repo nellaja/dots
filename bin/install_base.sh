@@ -436,9 +436,9 @@ vm.watermark_boost_factor = 0
 vm.watermark_scale_factor = 125
 vm.page-cluster = 0
 EOF
-    sleepy 1
+#    sleepy 1
 
-    info_print "Starting ZRAM . . . ."
+#    info_print "Starting ZRAM . . . ."
 #    arch-chroot /mnt systemctl daemon-reload
 #    arch-chroot /mnt systemctl start /dev/zram0
     sleepy 3
