@@ -126,6 +126,7 @@ install_sway() {
     clear
     
     info_print "Installing sway packages . . . ."
+    sleepy 2
     sudo pacman -S --needed --noconfirm "${sway_pkgs[@]}"
     sleepy 3
 }
@@ -140,6 +141,7 @@ install_xfce() {
     clear
     
     info_print "Installing XFCE packages . . . ."
+    sleepy 2
     sudo pacman -S --needed --noconfirm "${xfce_pkgs[@]}"
     sleepy 3
 }
@@ -154,6 +156,7 @@ install_extras() {
     clear
     
     info_print "Installing Extras packages . . . ."
+    sleepy 2
     sudo pacman -S --needed --noconfirm "${extras_pkgs[@]}"
     sleepy 3
 }
@@ -168,6 +171,7 @@ install_aur() {
     clear
     
     info_print "Installing AUR packages . . . ."
+    sleepy 2
     sudo aura -A "${aur_pkgs[@]}"
     sleepy 3
 }
