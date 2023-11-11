@@ -186,7 +186,7 @@ enable_services() {
     clear
     
     info_print "Enabling pipewire services . . . ."
-    sudo systemctl --user enable pipewire.socket pipewire-pulse.socket wireplumber
+    systemctl --user enable pipewire.socket pipewire-pulse.socket wireplumber
     sleepy 2
 
     info_print "Enabling log-in manager service . . . ."
