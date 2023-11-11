@@ -228,6 +228,11 @@ fi
 # Install Extras packages
 install_extras
 
+# Install AUR packages
+if [ -n "$aurhelper" ] ; then
+    install_aur
+fi
+
 # Enable Services
 enable_services
 
