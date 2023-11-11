@@ -16,6 +16,7 @@ thunar-archive-plugin
 thunar-media-tags-plugin
 thunar-volman
 wayland-protocols
+wev
 wl-clipboard
 xdg-desktop-portal-wlr
 xorg-xwayland

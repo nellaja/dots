@@ -383,7 +383,7 @@ EOF
     sleepy 2
 
     # Setting default target on log-in
-    arch-chroot /mnt systemctl set-default multi-user.target
+    #arch-chroot /mnt systemctl set-default multi-user.target
 }
 
 
