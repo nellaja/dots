@@ -20,8 +20,8 @@ bar:
   # Default font
   font: IBM Plex Sans:pixelsize=19
 
-  foreground: e0def4ff
-  background: 1f1d2eff
+  foreground: f2f4f8ff
+  background: 121619ff
 
 
   left:
@@ -30,14 +30,14 @@ bar:
           - string: &i3_common {margin: 6, on-click: "swaymsg --quiet workspace {name}"}
           - string: &default {<<: *i3_common, text: "{name}"}
           - focused: &focused
-              deco: {stack: [background: {color: 403d52ff}, border: {color: 1f1d2eff, size: 2}]}
+              deco: {stack: [background: {color: 343a3fff}, border: {color: 121619ff, size: 2}]}
           - unfocused: &unfocused
-              deco: {stack: [background: {color: 26233aff}, border: {color: 1f1d2eff, size: 2}]}
+              deco: {stack: [background: {color: 21272aff}, border: {color: 121619ff, size: 2}]}
           - invisible: &invisible
-              deco: {stack: [background: {color: 26233aff}, border: {color: 1f1d2eff, size: 2}]}
+              deco: {stack: [background: {color: 21272aff}, border: {color: 121619ff, size: 2}]}
           - urgent: &urgent
               foreground: 1f1d2eff
-              deco: {stack: [background: {color: eb6f92ff}, border: {color: 1f1d2eff, size: 2}]}
+              deco: {stack: [background: {color: eb6f92ff}, border: {color: 121619ff, size: 2}]}
         content:
           "":
             map:
@@ -53,7 +53,7 @@ bar:
                   margin: 6
                   foreground: f6c177ff
                   text: "{mode}"
-                  deco: {background: {color: 26233aff}}
+                  deco: {background: {color: 21272aff}}
               conditions:
                 mode == default: {empty: {}} 
         sort: native 

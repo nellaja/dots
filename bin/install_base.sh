@@ -15,13 +15,13 @@ clear
 rest=1                         # Scripting variable to control pause delay (set to 0 for no pauses; set to 1 for comfortable pauses)
 keymap="us"                    # Console keymap setting (localectl list-keymaps)
 font="ter-120b"                # Console font (ls -a /usr/share/kbd/consolefonts)
-device="/dev/"          # Device name for the install location (e.g., /dev/nvme0n1, /dev/sda)
+device="/dev/XXXX"             # Device name for the install location (e.g., /dev/nvme0n1, /dev/sda)
 kernel="lts"                   # Additional kernel to install (do not include linux prefix) 
 timezone="America/New_York"    # Location timezone
 locale="en_US.UTF-8"           # Locale and language variable 
-hostname=""           # Machine hostname
-username=""                  # Main user
-gpu=""                      # GPU manufacturer (amd or intel)[lspci | grep VGA]    
+hostname=""                    # Machine hostname
+username=""                    # Main user
+gpu=""                         # GPU manufacturer (amd or intel)[lspci | grep VGA]    
 
 # Base system package group
 base_system=(base base-devel linux linux-firmware vim terminus-font git networkmanager efibootmgr zram-generator)
@@ -153,11 +153,7 @@ terminal_init() {
     
     info_print "Configuring system date and time . . . ."
     timedatectl set-ntp true
-    sleepy 1
     
-    info_print "Date/Time status is . . . ."
-    sleepy 1
-    timedatectl status
     sleepy 3
 }
 
@@ -190,11 +186,7 @@ part_disk() {
     sgdisk -o "$device"
     sgdisk -n 0:0:+1G -t 0:ef00 "$device"
     sgdisk -n 0:0:0 -t 0:8304 "$device"
-    sleepy 2
     
-    info_print "Status of the partitioned disk:"
-    sleepy 1
-    fdisk -l "$device"
     sleepy 3
 }
 
@@ -380,10 +372,8 @@ Description = Gracefully upgrading systemd-boot . . . .
 When = PostTransaction
 Exec = /usr/bin/systemctl restart systemd-boot-update.service
 EOF
-    sleepy 2
-
-    # Setting default target on log-in
-    #arch-chroot /mnt systemctl set-default multi-user.target
+    
+    sleepy 3
 }
 
 
@@ -436,11 +426,7 @@ vm.watermark_boost_factor = 0
 vm.watermark_scale_factor = 125
 vm.page-cluster = 0
 EOF
-#    sleepy 1
 
-#    info_print "Starting ZRAM . . . ."
-#    arch-chroot /mnt systemctl daemon-reload
-#    arch-chroot /mnt systemctl start /dev/zram0
     sleepy 3
 }
 

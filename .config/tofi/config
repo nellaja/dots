@@ -30,7 +30,7 @@
 	# Default text color
 	#
 	# All text defaults to this color if not otherwise specified.
-	text-color = #E0DEF4
+	text-color = #DDE1E6
 
 	# All pieces of text have the same theming attributes available:
 	#
@@ -49,7 +49,7 @@
 
 	# Prompt text theme
 	# prompt-color = #FFFFFF
-	prompt-background = #191724
+	prompt-background = #121619
 	prompt-background-padding = 0
 	prompt-background-corner-radius = 0
 
@@ -82,7 +82,7 @@
 	# alternate-result-background-corner-radius = 0
 
 	# Selection text
-	selection-color = #F92672
+	selection-color = #EBBCBA
 	selection-background = #00000000
 	selection-background-padding = 0
 	selection-background-corner-radius = 0
@@ -152,7 +152,7 @@
     # 640 360
     
 	# Window background color (Surface)
-	background-color = #1F1D2E
+	background-color = #21272A
 
 	# Width of the border outlines in pixels.
 	outline-width = 1

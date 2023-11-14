@@ -1,20 +1,18 @@
 #  =====>> COLORSCHEME CONFIGURATION
 
-## name: Rosé Pine
+## name: Rosé Pine (modified)
 
-set $black #030305
-set $base #191724
-set $surface #1f1d2e
-set $overlay #26233a
-set $muted #6e6a86
-set $subtle #908caa
-set $text #e0def4
+set $black #000000
+set $base #121619
+set $surface #21272a
+set $overlay #343a3f
+set $muted #697077
+set $subtle #878d96
+set $text #dde1e6
 set $love #eb6f92
 set $gold #f6c177
 set $rose #ebbcba
 set $pine #31748f
 set $foam #9ccfd8
 set $iris #c4a7e7
-set $hl_low #21202e
-set $hl_med #403d52
-set $hl_high #524f67
+set $hl_high #4d5358

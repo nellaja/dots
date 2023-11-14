@@ -14,7 +14,7 @@ clear
 rest=1                         # Scripting variable to control pause delay (set to 0 for no pauses; set to 1 for comfortable pauses)
 aurhelper="aura"               # AUR helper
 sway="1"                       # Indicator that sway packages should be installed 
-xfce=""                       # Indicator that xfce packages should be installed
+xfce=""                        # Indicator that xfce packages should be installed
 
 # Sway package group (imports from sway_pkg file)
 mapfile -t sway_pkgs < sway_pkg
@@ -105,7 +105,7 @@ install_aurhelper() {
     if [ -n "$aurhelper" ] ; then
         info_print "Installing AUR helper ($aurhelper) . . . ."
         cd ~
-        mkdir ~/tmp
+        mkdir -p ~/tmp
         cd ~/tmp
         git clone "https://aur.archlinux.org/$aurhelper-bin.git"
         cd "$aurhelper-bin"
@@ -172,7 +172,7 @@ install_aur() {
     
     info_print "Installing AUR packages . . . ."
     sleepy 2
-    sudo aura -A "${aur_pkgs[@]}"
+    sudo aura -A --noconfirm "${aur_pkgs[@]}"
     sleepy 3
 }
 
