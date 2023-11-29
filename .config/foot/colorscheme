@@ -2,10 +2,10 @@
 # Rose-Piné (modified)
 
 [cursor]
-color=dde1e6 121619  # (Text) (Base)
+color=dde1e6 21272a  # (Text) (Base)
 
 [colors]
-background=121619  # (Base) 
+background=21272a  # (Base) 
 foreground=dde1e6  # (Text)
 regular0=343a3f  # black (Overlay)
 regular1=eb6f92  # red (Love)

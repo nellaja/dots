@@ -1,18 +1,20 @@
 #  =====>> COLORSCHEME CONFIGURATION
 
-## name: Rosé Pine (modified)
+## name: IBM Carbon
 
 set $black #000000
-set $base #121619
-set $surface #21272a
-set $overlay #343a3f
-set $muted #697077
-set $subtle #878d96
-set $text #dde1e6
-set $love #eb6f92
-set $gold #f6c177
-set $rose #ebbcba
-set $pine #31748f
-set $foam #9ccfd8
-set $iris #c4a7e7
-set $hl_high #4d5358
+set $cg100 #121619
+set $cg90 #21272a
+set $cg80 #343a3f
+set $cg70 #4d5358
+set $cg60 #697077
+set $cg50 #878d96
+set $cg40 #a2a9B0
+set $cg30 #c1c7cd
+set $cg20 #dde1e6
+set $cg10 #f2f4f8
+set $white #ffffff
+set $yellow #f1c21b
+set $green40 #42be65
+set $red50 #fa4d56
+set $blue50 #4589ff

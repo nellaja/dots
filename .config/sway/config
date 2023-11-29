@@ -49,7 +49,7 @@ include colorscheme
 # Run 'swaymsg -t get_outputs' to get names of outputs
 
 # Configure wallpaper.
-output * bg $wallpaper fill $base
+output * bg $wallpaper fill $cg90
 
 #  =====>>  IDLE CONFIGURATION
 
