@@ -2,7 +2,7 @@
 # Rose-Piné (modified)
 
 [cursor]
-color=dde1e6 21272a  # (Text) (Base)
+#color=dde1e6 21272a  # (Text) (Base)
 
 [colors]
 background=21272a  # (Base) 

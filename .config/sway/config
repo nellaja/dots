@@ -7,7 +7,10 @@
 # Reference 'man 5 sway-bar'
 # Reference 'man 1 swaymsg'
 
-#  =====>>  VARIABLES
+
+# ----------------------------------------------------------------------------------
+#  VARIABLES
+# ----------------------------------------------------------------------------------
 
 # Set logo key as the modifier key.
 set $mod Mod4
@@ -51,7 +54,10 @@ include colorscheme
 # Configure wallpaper.
 output * bg $wallpaper fill $cg90
 
-#  =====>>  IDLE CONFIGURATION
+
+# ----------------------------------------------------------------------------------
+#  IDLE CONFIGURATION
+# ----------------------------------------------------------------------------------
 
 # Configure time limits for screen locking and screen poweroff.
 exec swayidle -w \
@@ -59,8 +65,10 @@ exec swayidle -w \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep '$lock'
 
+# ----------------------------------------------------------------------------------
+#  INPUT CONFIGURATION
+# ----------------------------------------------------------------------------------
 
-#  =====>>  INPUT CONFIGURATION
 # Run 'swaymsg -t get_inputs' to get names of inputs
 
 # Hide cursor after time lapse
@@ -68,6 +76,13 @@ seat seat0 hide_cursor 5000
 
 # Set escape key if client is captured/inhibited
 bindsym --inhibited $mod+Escape seat - pointer_constraint escape, seat - shortcuts_inhibitor disable
+
+# Keyboard input
+input type:keyboard {
+	xkb_layout us
+	xkb_variant altgr-intl
+	xkb_options compose:ralt
+}
 
 
 #  =====>>  KEY BINDINGS 
@@ -197,6 +212,9 @@ bindsym --inhibited $mod+Escape seat - pointer_constraint escape, seat - shortcu
     # Lock screen.
     bindsym $mod+Shift+Escape exec $lock
 
+    # Restart yambar.
+    bindsym $mod+Shift+z exec "killall yambar; yambar"
+
 #  =====>>  CUSTOM MODES
 
 bindsym $mod+w mode "window"
@@ -267,7 +285,7 @@ titlebar_border_thickness 1
 smart_borders on
 
 # Minimum size for floating windows.
-floating_minimum_size 1280 x 720
+#floating_minimum_size 1280 x 720
 
 # Settings for urgency hints.
 focus_on_window_activation urgent
@@ -285,23 +303,27 @@ mouse_warping container
 # Xwayland support.
 xwayland enable
 
-# Import additional configuration files.
+
+
+# Execute additional WM components.
+exec yambar
+exec fnott >/tmp/fnott.log 2>&1
+
+# Special window controls.
+for_window [app_id=mpv] sticky enable
+for_window [floating] border csd
+for_window [app_id="firefox" title="^Picture-in-Picture$"] floating enable, sticky enable, border none
+for_window [app_id="firefox" title="Firefox — Sharing Indicator"] kill
+
+# Start pol-kit agent.
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# Run custom scripts.
+# exec check-disk-usage
+
+# Import additional user configuration files.
 include ~/.config/sway/conf.d/*
 
-exec_always yambar
-#exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-#exec systemd-notify --ready
-
-
-#############################################
-
-# TBD
-
-#for_window [app_id=mpv] sticky enable
-#for_window [app_id="firefox" title="Picture-in-Picture"] floating enable, sticky enable, border none
-#exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-#exec kanshi >/tmp/kanshi.log 2>&1
-#exec mako >/tmp/mako.log 2>&1
-#exec poweralertd
-#for_window [floating] border csd
-#for_window [app_id="firefox" title="Firefox — Sharing Indicator"] kill
+# Import global configuration files.
+include /etc/sway/config.d/*
+exec systemd-notify --ready
