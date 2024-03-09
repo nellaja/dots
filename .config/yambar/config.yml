@@ -1,61 +1,75 @@
-# Typical laptop setup, with wifi, brightness, battery etc, for
-# i3/Sway.
+# Global Anchors
+awesome: &awesome Font Awesome 6 Free:style=solid:pixelsize=20
+awesome_brands: &awesome_brands Font Awesome 6 Brands:pixelsize=20
+symbols: &symbols Symbols Nerd Font:style=Regular:pixelsize=29
+monofont: &monofont IBM Plex Mono:pixelsize=22
 
-# For X11/i3, you'll want to replace calls to swaymsg with i3-msg, and
-# the sway-xkb module with the xkb module.
+# border-interactive/support-info (Blue 50)
+blue: &blue 4589ffff
 
-# fonts we'll be re-using here and there
-awesome: &awesome Font Awesome 6 Free:style=solid:pixelsize=14
-awesome_brands: &awesome_brands Font Awesome 6 Brands:pixelsize=16
+# (Gray 50)
+gray: &gray 8d8d8dff
 
-std_underline: &std_underline {underline: { size: 2, color: 31748fff}}
+# support-error (Red 50)
+red: &red fa4d56ff
+
+# support-warning (Yellow)
+yellow: &yellow f1c21bff
+
+# Gray 100
+gray100: &gray100 161616ff
 
 # This is THE bar configuration
 bar:
-  height: 31
+  height: 44
   location: top
-  spacing: 5
-  #margin: 7
+  margin: 6
 
   # Default font
-  font: IBM Plex Sans:pixelsize=19
+  font: IBM Plex Sans:pixelsize=22
+  
+  # text-primary (Gray 10)
+  foreground: f4f4f4ff
 
-  foreground: f2f4f8ff
-  background: 121619ff
-
+  # background (Gray 100)
+  background: 161616ff
 
   left:
+    - label:
+        content:
+          string: {text: "", font: *symbols, foreground: *blue, margin: 11}
+
     - i3:
-        anchors: # Not used (directly) by f00bar; used here to avoid duplication
-          - string: &i3_common {margin: 6, on-click: "swaymsg --quiet workspace {name}"}
-          - string: &default {<<: *i3_common, text: "{name}"}
-          - focused: &focused
-              deco: {stack: [background: {color: 697077ff}, border: {color: 121619ff, size: 2}]}
-          - unfocused: &unfocused
-              deco: {stack: [background: {color: 343a3fff}, border: {color: 121619ff, size: 2}]}
-          - invisible: &invisible
-              deco: {stack: [background: {color: 343a3fff}, border: {color: 121619ff, size: 2}]}
-          - urgent: &urgent
-              foreground: 1f1d2eff
-              deco: {stack: [background: {color: fa4d56ff}, border: {color: 121619ff, size: 2}]}
+        content:
+          current:
+            map:
+              default: {empty: {}} 
+              conditions:
+                mode == "window": {string: {text: "{mode}", foreground: *yellow, font: *monofont, margin: 11}}
+                mode == "notify": {string: {text: "{mode}", foreground: *yellow, font: *monofont, margin: 11}}
+                mode == "volume": {string: {text: "{mode}", foreground: *yellow, font: *monofont, margin: 11}}
+                mode == "power":
+                  list:
+                    items:
+                      - string: {text: "{mode}", foreground: *yellow, font: *monofont, margin: 11}
+                mode == "music": 
+                  list:
+                    items:
+                      - string: {text: "{mode}", foreground: *yellow, font: *monofont, margin: 11}
+    - i3:
+        anchors: 
+          - string: &sway_common {text: "{name}", margin: 11, on-click: "swaymsg --quiet workspace {name}"}
+          - string: &sway_focus {<<: *sway_common, deco: {overline: {color: *blue, size: 2}}}
+          - string: &sway_dim {<<: *sway_common, foreground: *gray}
+          - string: &sway_urgent {<<: *sway_dim, deco: {overline: {color: *red, size: 2}}}  
         content:
           "":
             map:
               conditions:
-                state == focused:   {string: {<<: [*default, *focused]}}
-                state == unfocused: {string: {<<: [*default, *unfocused]}}
-                state == invisible: {string: {<<: [*default, *invisible]}}
-                state == urgent:    {string: {<<: [*default, *urgent]}}
-          current:
-            map:
-              default:
-                string:
-                  margin: 6
-                  foreground: f1c21bff
-                  text: "{mode}"
-                  deco: {background: {color: 343a3fff}}
-              conditions:
-                mode == default: {empty: {}} 
+                state == focused: {string: {<<: *sway_focus}}
+                state == unfocused: {string: {<<: *sway_dim}}
+                state == invisible: {string: {<<: *sway_dim}}
+                state == urgent: {string: {<<: *sway_urgent}}
         sort: native 
 
     - foreign-toplevel:
@@ -64,8 +78,21 @@ bar:
             conditions:
               ~activated: {empty: {}}
               activated:
-                - string: {text: "{app-id}", foreground: 4589ffff, left-margin: 11}
-                - string: {text: ": {title}"}
+                map:
+                  default: 
+                    - string: {text: "  ", font: *symbols, foreground: *blue, left-margin: 44}
+                    - string: {text: "{app-id}"}
+                  conditions:
+                    app-id == foot: 
+                      list:
+                        items:
+                          - string: {text: "  ", font: *symbols, foreground: *blue, left-margin: 44}
+                          - string: {text: "{app-id}"}
+                    app-id == firefox:
+                      list:
+                        items:
+                          - string: {text: "  ", font: *symbols, foreground: *blue, left-margin: 44}
+                          - string: {text: "{app-id}"}                            
   center:
     - clock:
         time-format: "%R"
@@ -73,7 +100,65 @@ bar:
         content:
           string: {text: "{date}  {time}"}
   right:  
-    - network:
+    - script:
+        path: /usr/bin/playerctl
+        args:
+          - "--follow"
+          - "metadata"
+          - "-f"
+          - |
+            status|string|{{status}}
+            artist|string|{{artist}}
+            title|string|{{title}}
+        poll-interval: 2500
+        content:
+          map:
+            default: {empty: {}}
+            conditions:
+              status == Stopped: {empty: {}}
+              status == Paused:
+                list:
+                  items:
+                    - string: {text: "  ", font: *symbols, foreground: *gray} 
+                    - string: {text: "{artist} - {title}", foreground: *gray, max: 31, right-margin: 44}
+              status == Playing: 
+                list:
+                  items:
+                    - string: {text: "  ", font: *symbols}
+                    - string: {text: "{artist} - {title}", max: 31, right-margin: 44}
+    - pipewire:
+        content:
+          map:
+            conditions:
+              type == sink:
+                map:
+                  conditions:
+                    (form_factor == "headphones") && (~muted):
+                      list:
+                        items:
+                          - string: {text: "󰋋 ", font: *symbols, left-margin: 11}
+                          - string: {text: "{linear_volume}%", right-margin: 11}
+                    (form_factor == "headphones") && (muted):
+                      list:
+                        items:
+                          - string: {text: "󰟎 ", font: *symbols, foreground: *gray, left-margin: 11}
+                          - string: {text: "{linear_volume}%", foreground: *gray, right-margin: 11}                   
+                    (form_factor != "headphones") && (muted):
+                      list:
+                        items:
+                          - string: {text: "󰝟 ", font: *symbols, foreground: *gray, left-margin: 11}
+                          - string: {text: "{linear_volume}%", foreground: *gray, right-margin: 11}
+                  default:
+                    list:
+                      items:
+                        - ramp:
+                            tag: linear_volume
+                            items:
+                              - string: {text: "󰕿 ", font: *symbols, left-margin: 11}
+                              - string: {text: "󰖀 ", font: *symbols, left-margin: 11}
+                              - string: {text: "󰕾 ", font: *symbols, left-margin: 11}
+                        - string: {text: "{linear_volume}%", right-margin: 11}
+    - network:   
         name: enp42s0
         content:
           map:
@@ -81,51 +166,6 @@ bar:
               ~carrier: {empty: {}}
               carrier:
                 map:
-                  default: {string: {text: , font: *awesome, foreground: eb6f92ff}}
+                  default: {string: {text: , font: *awesome, margin: 11}}
                   conditions:
-                    state == up && ipv4 != "": {string: {text: , font: *awesome}}
-#    - network:
-#        name: wlp2s0
-#        poll-interval: 1000
-#        content:
-#          map:
-#            default: {string: {text: , font: *awesome, foreground: ffffff66}}
-#            conditions:
-#              state == down: {string: {text: , font: *awesome, foreground: ff0000ff}}
-#              state == up:
-#                map:
-#                  default:
-#                    - string: {text: , font: *awesome}
-#                    - string: {text: "{ssid} {dl-speed:mb}/{ul-speed:mb} Mb/s"}
-#
-#                  conditions:
-#                    ipv4 == "":
-#                      - string: {text: , font: *awesome, foreground: ffffff66}
-#                      - string: {text: "{ssid} {dl-speed:mb}/{ul-speed:mb} Mb/s", foreground: ffffff66}
-#    - alsa:
-#        card: hw:PCH
-#        mixer: Master
-#        content:
-#          map:
-#            conditions:
-#              ~online: {string: {text: , font: *awesome, foreground: ff0000ff}}
-#              online:
-#                map:
-#                  on-click: /bin/sh -c "amixer -q sset Speaker unmute && amixer -q sset Headphone unmute && amixer -q sset Master toggle"
-#                  conditions:
-#                    muted: {string: {text: , font: *awesome, foreground: ffffff66}}
-#                    ~muted:
-#                      ramp:
-#                        tag: percent
-#                        items:
-#                          - string: {text: , font: *awesome}
-#                          - string: {text: , font: *awesome}
-#                          - string: {text: , font: *awesome}
-    - label:
-        content:
-          string:
-            on-click:
-              left: systemctl poweroff
-              right: systemctl reboot
-            text: 
-            font: *awesome
+                    ipv4 == "": {string: {text: , font: *awesome, foreground: *red, margin: 11}}
