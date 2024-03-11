@@ -39,8 +39,7 @@ set $lock swaylock -f -e -i $wallpaper_lock -s fill
 
 # Set font variables.
 set $font_family IBM Plex Sans
-set $font_size 11
-set $bar_font_size 14
+set $font_size 13
 
 # Set color scheme variables.
 include colorscheme
@@ -54,7 +53,6 @@ include colorscheme
 
 # Configure wallpaper.
 output * bg $wallpaper fill
-
 
 # ----------------------------------------------------------------------------------
 #  IDLE CONFIGURATION
@@ -187,10 +185,10 @@ input type:keyboard {
     bindsym $mod+semicolon splitt
 
     # Toggle the container between tiling and floating mode.
-    bindsym $mod+Shift+g floating toggle
+    bindsym $mod+g floating toggle
 
     # Swap focus between the tiling area and the floating area.
-    bindsym $mod+g focus mode_toggle
+    bindsym $mod+Shift+g focus mode_toggle
 
     # Toggle between fullscreen mode.
     bindsym $mod+m fullscreen toggle
@@ -270,10 +268,10 @@ mode "notify" {
 bindsym $mod+Shift+v mode "volume"
 mode "volume" {
     bindsym Escape mode default
-    bindsym m exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-    bindsym minus exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-    bindsym equal exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-    bindsym space exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+    bindsym m exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+    bindsym minus exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+    bindsym equal exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
+    bindsym space exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 }
 
 
@@ -283,6 +281,9 @@ mode "volume" {
 
 # Default container layout for tiled containers.
 default_orientation auto
+
+
+gaps inner 11
 
 # Default border settings.
 default_border pixel 2

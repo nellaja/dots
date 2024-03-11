@@ -2,7 +2,7 @@
 
 # Color configuration for windows and borders
 # Property Name         <border>  <bg>     <text>   <indicator>  <child_border>
-client.focused          $cg90     $blue50  $cg10    $yellow      $blue50
-client.focused_inactive $cg90     $cg100   $cg60    $black       $black
-client.unfocused        $cg90     $cg100   $cg60    $black       $black
-client.urgent           $cg90     $red50   $cg100   $red50       $red50
+client.focused          $blue50   $blue60  $g10     $yellow      $blue50
+client.focused_inactive $g80      $g90     $g50     $g80         $g80
+client.unfocused        $g80      $g90     $g50     $g80         $g80
+client.urgent           $red50    $red60   $g10     $yellow      $red50

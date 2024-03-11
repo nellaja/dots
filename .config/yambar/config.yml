@@ -8,7 +8,7 @@ monofont: &monofont IBM Plex Mono:pixelsize=22
 blue: &blue 4589ffff
 
 # (Gray 50)
-gray: &gray 8d8d8dff
+gray: &gray 878d96ff
 
 # support-error (Red 50)
 red: &red fa4d56ff
@@ -17,7 +17,7 @@ red: &red fa4d56ff
 yellow: &yellow f1c21bff
 
 # Gray 100
-gray100: &gray100 161616ff
+gray100: &gray100 121619ff
 
 # This is THE bar configuration
 bar:
@@ -29,10 +29,10 @@ bar:
   font: IBM Plex Sans:pixelsize=22
   
   # text-primary (Gray 10)
-  foreground: f4f4f4ff
+  foreground: f2f4f8ff
 
   # background (Gray 100)
-  background: 161616ff
+  background: 121619ff
 
   left:
     - label:
