@@ -1,0 +1,94 @@
+attribute = "LightGrey2"
+type = "LightGrey2"
+"type.builtin" = "LightCyan"
+constructor = "LightCyan"
+constant = "LightGrey2"
+"constant.builtin" = "LightCyan"
+"constant.builtin.boolean" = "LightGrey2"
+"constant.character" = "LightGrey2"
+"constant.character.escape" = "LightCyan"
+"constant.numeric.integer" = "LightGrey2"
+"constant.numeric.float" = "LightGrey2"
+string = "LightGreen"
+"string.regexp" = "LightCyan"
+"string.special.url" = { modifiers = ["underlined"] }
+comment = "LightGrey4"
+variable = "LightGrey2"
+"variable.builtin" = "LightCyan"
+label = { fg = "LightGrey2", modifiers = ["bold"] }
+punctuation = "LightGrey2"
+"punctuation.special" = "LightCyan"
+keyword = { fg = "LightGrey2", modifiers = ["bold"] }
+operator = "LightGrey2"
+function = "LightCyan"
+"function.builtin" = "LightCyan"
+tag = "LightCyan"
+"tag.builtin" = "LightCyan"
+special = "LightCyan"
+markup = "LightCyan"
+"markup.heading" = { fg = "LightGrey2", modifiers = ["bold"] }
+"markup.bold" = { modifiers = ["bold"] }
+"markup.italic" = { modifiers = ["italic"] }
+"markup.strikethrough" = { modifiers = ["crossed_out"] }
+"markup.link" = { modifiers = ["underlined"] }
+"diff.plus" = "LightGreen"
+"diff.minus" = "LightRed"
+"diff.delta" = "LightCyan"
+
+# TODO: differentiate doc comment
+# concat (ERROR) @error.syntax and "MISSING ;" selectors for errors
+
+"ui.background" = { bg = "midnight" }
+"ui.background.separator" = { fg = "comet" }
+"ui.linenr" = { fg = "comet" }
+"ui.linenr.selected" = { fg = "lilac" }
+"ui.statusline" = { fg = "lilac", bg = "revolver" }
+"ui.statusline.inactive" = { fg = "lavender", bg = "revolver" }
+"ui.popup" = { bg = "revolver" }
+"ui.window" = { fg = "bossanova" }
+"ui.help" = { bg = "#7958DC", fg = "#171452" }
+"ui.text" = { fg = "lavender" }
+"ui.text.focus" = { fg = "white" }
+"ui.text.inactive" = "sirocco"
+"ui.virtual" = { fg = "comet" }
+"ui.virtual.ruler" = { bg = "revolver" }
+"ui.virtual.jump-label" = { fg = "apricot", modifiers = ["bold"] }
+
+"ui.virtual.indent-guide" = { fg = "comet" }
+
+"ui.selection" = { bg = "#540099" }
+"ui.selection.primary" = { bg = "#540099" }
+# TODO: namespace ui.cursor as ui.selection.cursor?
+"ui.cursor.select" = { bg = "delta" }
+"ui.cursor.insert" = { bg = "white" }
+"ui.cursor.primary.select" = { bg = "delta" }
+"ui.cursor.primary.insert" = { bg = "white" }
+"ui.cursor.match" = { fg = "#212121", bg = "#6C6999" }
+"ui.cursor" = { modifiers = ["reversed"] }
+"ui.cursorline.primary" = { bg = "bossanova" }
+"ui.highlight" = { bg = "bossanova" }
+"ui.highlight.frameline" = { bg = "#634450" }
+"ui.debug" = { fg = "#634450" }
+"ui.debug.breakpoint" = { fg = "apricot" }
+"ui.menu" = { fg = "lavender", bg = "revolver" }
+"ui.menu.selected" = { fg = "revolver", bg = "white" }
+"ui.menu.scroll" = { fg = "lavender", bg = "comet" }
+
+"diagnostic.hint" = { underline = { color = "silver", style = "curl" } }
+"diagnostic.info" = { underline = { color = "delta", style = "curl" } }
+"diagnostic.warning" = { underline = { color = "lightning", style = "curl" } }
+"diagnostic.error" = { underline = { color = "apricot", style = "curl" } }
+"diagnostic.unnecessary" = { modifiers = ["dim"] }
+"diagnostic.deprecated" = { modifiers = ["crossed_out"] }
+
+warning = "lightning"
+error = "apricot"
+info = "delta"
+hint = "silver"
+
+[palette]
+LightGrey2 = "#e0e2ea"
+LightGrey4 = "#9b9ea4"
+LightCyan = "#8cf8f7"
+LightGreen = "#b3f6c0"
+LightRed = "#ffc0b9"
