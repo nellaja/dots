@@ -52,7 +52,8 @@ include colorscheme
 # Run 'swaymsg -t get_outputs' to get names of outputs
 
 # Configure wallpaper.
-output * bg $wallpaper fill
+#output * bg $wallpaper fill
+output * bg #21272a solid_color
 
 # ----------------------------------------------------------------------------------
 #  IDLE CONFIGURATION
@@ -289,6 +290,7 @@ gaps inner 11
 default_border pixel 2
 titlebar_border_thickness 1
 smart_borders on
+smart_gaps on
 
 # Settings for urgency hints.
 focus_on_window_activation urgent

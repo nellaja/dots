@@ -1,3 +1,5 @@
+# Syntax
+
 attribute = "LightGrey2"
 type = "LightGrey2"
 "type.builtin" = "LightCyan"
@@ -35,11 +37,10 @@ markup = "LightCyan"
 "diff.minus" = "LightRed"
 "diff.delta" = "LightCyan"
 
-# TODO: differentiate doc comment
-# concat (ERROR) @error.syntax and "MISSING ;" selectors for errors
+# Interface
 
-"ui.background" = { bg = "midnight" }
-"ui.background.separator" = { fg = "comet" }
+"ui.background" = { bg = "DarkGrey2" }
+"ui.background.separator" = { fg = "DarkGrey2" }
 "ui.linenr" = { fg = "comet" }
 "ui.linenr.selected" = { fg = "lilac" }
 "ui.statusline" = { fg = "lilac", bg = "revolver" }
@@ -81,12 +82,9 @@ markup = "LightCyan"
 "diagnostic.unnecessary" = { modifiers = ["dim"] }
 "diagnostic.deprecated" = { modifiers = ["crossed_out"] }
 
-warning = "lightning"
-error = "apricot"
-info = "delta"
-hint = "silver"
 
 [palette]
+DarkGrey2 = "#14161b"
 LightGrey2 = "#e0e2ea"
 LightGrey4 = "#9b9ea4"
 LightCyan = "#8cf8f7"

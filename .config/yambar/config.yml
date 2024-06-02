@@ -1,43 +1,55 @@
 # Global Anchors
 awesome: &awesome Font Awesome 6 Free:style=solid:pixelsize=20
-awesome_brands: &awesome_brands Font Awesome 6 Brands:pixelsize=20
 symbols: &symbols Symbols Nerd Font:style=Regular:pixelsize=29
 monofont: &monofont IBM Plex Mono:pixelsize=22
 
-# border-interactive/support-info (Blue 50)
-blue: &blue 4589ffff
+# (Blue 50)
+blue50: &blue50 4589ffff
 
-# (Gray 50)
-gray: &gray 878d96ff
+# (Red 50)
+red50: &red50 fa4d56ff
 
-# support-error (Red 50)
-red: &red fa4d56ff
+# (Yellow 30)
+yellow30: &yellow30 f1c21bff
 
-# support-warning (Yellow)
-yellow: &yellow f1c21bff
+# Gray 90
+gray90: &gray90 21272aff
 
-# Gray 100
-gray100: &gray100 121619ff
+# Gray 70
+gray70: &gray70 4d5358ff
+
+# Gray 50 (Tertiary Text)
+gray50: &gray50 878d96ff
+
+# Gray 10 
+gray10: &gray10 f2f4f8ff
 
 # This is THE bar configuration
 bar:
   height: 44
   location: top
-  margin: 6
+  margin: 7
 
   # Default font
   font: IBM Plex Sans:pixelsize=22
   
-  # text-primary (Gray 10)
-  foreground: f2f4f8ff
+  # text-primary
+  foreground: *gray10
 
-  # background (Gray 100)
-  background: 121619ff
+  # background 
+  background: *gray90
 
+  border:
+    left-width: 0
+    right-width: 0
+    top-width: 0
+    bottom-width: 2
+    color: *gray70
+  
   left:
     - label:
         content:
-          string: {text: "", font: *symbols, foreground: *blue, margin: 11}
+          string: {text: "", font: *symbols, foreground: *blue50, margin: 11}
 
     - i3:
         content:
@@ -45,23 +57,17 @@ bar:
             map:
               default: {empty: {}} 
               conditions:
-                mode == "window": {string: {text: "{mode}", foreground: *yellow, font: *monofont, margin: 11}}
-                mode == "notify": {string: {text: "{mode}", foreground: *yellow, font: *monofont, margin: 11}}
-                mode == "volume": {string: {text: "{mode}", foreground: *yellow, font: *monofont, margin: 11}}
-                mode == "power":
-                  list:
-                    items:
-                      - string: {text: "{mode}", foreground: *yellow, font: *monofont, margin: 11}
-                mode == "music": 
-                  list:
-                    items:
-                      - string: {text: "{mode}", foreground: *yellow, font: *monofont, margin: 11}
+                mode == "window": {string: {text: "{mode}", foreground: *yellow30, font: *monofont, margin: 11}}
+                mode == "notify": {string: {text: "{mode}", foreground: *yellow30, font: *monofont, margin: 11}}
+                mode == "volume": {string: {text: "{mode}", foreground: *yellow30, font: *monofont, margin: 11}}
+                mode == "power": {string: {text: "{mode}", foreground: *yellow30, font: *monofont, margin: 11}}
+                mode == "music": {string: {text: "{mode}", foreground: *yellow30, font: *monofont, margin: 11}}
     - i3:
         anchors: 
           - string: &sway_common {text: "{name}", margin: 11, on-click: "swaymsg --quiet workspace {name}"}
-          - string: &sway_focus {<<: *sway_common, deco: {overline: {color: *blue, size: 2}}}
-          - string: &sway_dim {<<: *sway_common, foreground: *gray}
-          - string: &sway_urgent {<<: *sway_dim, deco: {overline: {color: *red, size: 2}}}  
+          - string: &sway_focus {<<: *sway_common, deco: {overline: {color: *blue50, size: 2}}}
+          - string: &sway_dim {<<: *sway_common, foreground: *gray50}
+          - string: &sway_urgent {<<: *sway_dim, deco: {overline: {color: *red50, size: 2}}}  
         content:
           "":
             map:
@@ -80,18 +86,18 @@ bar:
               activated:
                 map:
                   default: 
-                    - string: {text: "  ", font: *symbols, foreground: *blue, left-margin: 44}
+                    - string: {text: "  ", font: *symbols, foreground: *blue50, left-margin: 44}
                     - string: {text: "{app-id}"}
                   conditions:
                     app-id == foot: 
                       list:
                         items:
-                          - string: {text: "  ", font: *symbols, foreground: *blue, left-margin: 44}
+                          - string: {text: "  ", font: *symbols, foreground: *blue50, left-margin: 44}
                           - string: {text: "{app-id}"}
                     app-id == firefox:
                       list:
                         items:
-                          - string: {text: "  ", font: *symbols, foreground: *blue, left-margin: 44}
+                          - string: {text: "  ", font: *symbols, foreground: *blue50, left-margin: 44}
                           - string: {text: "{app-id}"}                            
   center:
     - clock:
@@ -119,8 +125,8 @@ bar:
               status == Paused:
                 list:
                   items:
-                    - string: {text: "  ", font: *symbols, foreground: *gray} 
-                    - string: {text: "{artist} - {title}", foreground: *gray, max: 31, right-margin: 44}
+                    - string: {text: "  ", font: *symbols, foreground: *gray50} 
+                    - string: {text: "{artist} - {title}", foreground: *gray50, max: 31, right-margin: 44}
               status == Playing: 
                 list:
                   items:
@@ -141,13 +147,13 @@ bar:
                     (form_factor == "headphones") && (muted):
                       list:
                         items:
-                          - string: {text: "󰟎 ", font: *symbols, foreground: *gray, left-margin: 11}
-                          - string: {text: "{linear_volume}%", foreground: *gray, right-margin: 11}                   
+                          - string: {text: "󰟎 ", font: *symbols, foreground: *gray50, left-margin: 11}
+                          - string: {text: "{linear_volume}%", foreground: *gray50, right-margin: 11}                   
                     (form_factor != "headphones") && (muted):
                       list:
                         items:
-                          - string: {text: "󰝟 ", font: *symbols, foreground: *gray, left-margin: 11}
-                          - string: {text: "{linear_volume}%", foreground: *gray, right-margin: 11}
+                          - string: {text: "󰝟 ", font: *symbols, foreground: *gray50, left-margin: 11}
+                          - string: {text: "{linear_volume}%", foreground: *gray50, right-margin: 11}
                   default:
                     list:
                       items:
@@ -168,4 +174,4 @@ bar:
                 map:
                   default: {string: {text: , font: *awesome, margin: 11}}
                   conditions:
-                    ipv4 == "": {string: {text: , font: *awesome, foreground: *red, margin: 11}}
+                    ipv4 == "": {string: {text: , font: *awesome, foreground: *red50, margin: 11}}
