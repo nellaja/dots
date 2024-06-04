@@ -52,8 +52,8 @@ include colorscheme
 # Run 'swaymsg -t get_outputs' to get names of outputs
 
 # Configure wallpaper.
-#output * bg $wallpaper fill
-output * bg #21272a solid_color
+output * bg $wallpaper fill
+#output * bg #21272a solid_color
 
 # ----------------------------------------------------------------------------------
 #  IDLE CONFIGURATION
@@ -195,7 +195,7 @@ input type:keyboard {
     bindsym $mod+m fullscreen toggle
 
     # Set border style to normal.
-    bindsym $mod+b border normal 1
+    bindsym $mod+b border normal 2
 
     # Set border style to pixel.
     bindsym $mod+Shift+b border pixel 2
@@ -284,11 +284,11 @@ mode "volume" {
 default_orientation auto
 
 
-gaps inner 11
+gaps inner 7
 
 # Default border settings.
 default_border pixel 2
-titlebar_border_thickness 1
+titlebar_border_thickness 2
 smart_borders on
 smart_gaps on
 
