@@ -1,1 +1,6 @@
 theme="carbyne"
+
+[editor]
+#rulers = [80]
+#cursorline = true
+#cursorcolumn = true

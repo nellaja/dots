@@ -45,44 +45,37 @@ markup = "Cyan30"
 "ui.cursor.match" = { bg = "Gray70", modifiers = ["bold"] }
 "ui.debug.breakpoint" = { fg = "Cyan30" }
 "ui.debug.active" = { fg = "Cyan30" }
-"ui.linenr" = { fg = "Gray70" }
+"ui.linenr" = { fg = "Gray50" }
 "ui.linenr.selected" = { modifiers = ["bold"] }
 "ui.statusline" = { fg = "Gray10", bg = "Gray80" }
+"ui.text" = { fg = "Gray10" }
+"ui.text.focus" = { fg = "Blue50" }
+"ui.text.inactive" = { fg = "Gray50" }
 
-#"ui.statusline.inactive" = { fg = "lavender", bg = "revolver" }
-#"ui.popup" = { bg = "revolver" }
-#"ui.window" = { fg = "bossanova" }
-#"ui.help" = { bg = "#7958DC", fg = "#171452" }
-#"ui.text" = { fg = "lavender" }
-#"ui.text.focus" = { fg = "white" }
-#"ui.text.inactive" = "sirocco"
-#"ui.virtual" = { fg = "comet" }
-#"ui.virtual.ruler" = { bg = "revolver" }
-#"ui.virtual.jump-label" = { fg = "apricot", modifiers = ["bold"] }
+"ui.virtual.ruler" = { bg = "Gray80" }
+"ui.virtual.whitespace" = { fg = "Gray70" }
+"ui.virtual.indent-guide" = { fg = "Gray70" }
 
-#"ui.virtual.indent-guide" = { fg = "comet" }
+"ui.menu" = { bg = "Gray80" }
+"ui.menu.selected" = { fg = "Gray80", bg = "Gray10" }
+"ui.menu.scroll" = { fg = "Gray70", bg = "Gray80" }
 
-"ui.selection" = { bg = "#540099" }
-#"ui.selection.primary" = { bg = "#540099" }
-# TODO: namespace ui.cursor as ui.selection.cursor?
-#"ui.cursor.select" = { bg = "delta" }
-#"ui.cursor.insert" = { bg = "white" }
-#"ui.cursor.primary.select" = { bg = "delta" }
-#"ui.cursor.primary.insert" = { bg = "white" }
-#"ui.cursor.match" = { fg = "#212121", bg = "#6C6999" }
-#"ui.cursorline.primary" = { bg = "bossanova" }
-#"ui.highlight" = { bg = "bossanova" }
-#"ui.highlight.frameline" = { bg = "#634450" }
-#"ui.menu" = { fg = "lavender", bg = "revolver" }
-#"ui.menu.selected" = { fg = "revolver", bg = "white" }
-#"ui.menu.scroll" = { fg = "lavender", bg = "comet" }
+"ui.selection" = { bg = "Gray70" }
+"ui.highlight" = { bg = "Gray80" }
+"ui.cursorline.primary" = { bg = "Gray80" }
+"ui.cursorcolumn.primary" = { bg = "Gray80" } 
 
-#"diagnostic.hint" = { underline = { color = "silver", style = "curl" } }
-#"diagnostic.info" = { underline = { color = "delta", style = "curl" } }
-#"diagnostic.warning" = { underline = { color = "lightning", style = "curl" } }
-#"diagnostic.error" = { underline = { color = "apricot", style = "curl" } }
-#"diagnostic.unnecessary" = { modifiers = ["dim"] }
-#"diagnostic.deprecated" = { modifiers = ["crossed_out"] }
+warning = { fg = "Yellow30" }
+error = {fg = "Red50" }
+info = {fg = "Cyan30" }
+hint = {fg = "Blue50" }
+diagnostic = { fg = "Green30" }
+"diagnostic.hint" = { fg = "Blue50" }
+"diagnostic.info" = { fg = "Cyan30" }
+"diagnostic.warning" = { fg = "Yellow30" }
+"diagnostic.error" = { fg = "Red50" }
+"diagnostic.unnecessary" = { fg = "Gray50" }
+"diagnostic.deprecated" = { fg = "Red50", modifiers = ["crossed_out"] }
 
 
 [palette]
@@ -92,6 +85,9 @@ Gray50 = "#878d96"
 Gray70 = "#4d5358"
 Gray80 = "#343a3f"
 Gray90 = "#21272a"
+Gray100 = "#121619"
+Blue50 = "#4589ff"
 Cyan30 = "#82cfff"
 Green30 = "#6fdc8c"
 Red50 = "#fa4d56"
+Yellow30 = "#f1c21b"
