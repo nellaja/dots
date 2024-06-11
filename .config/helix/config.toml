@@ -4,3 +4,4 @@ theme="carbyne"
 #rulers = [80]
 #cursorline = true
 #cursorcolumn = true
+color-modes = true

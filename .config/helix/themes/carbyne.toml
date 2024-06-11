@@ -35,19 +35,38 @@ markup = "Cyan30"
 "markup.link" = { modifiers = ["underlined"] }
 "diff.plus" = "Green30"
 "diff.minus" = "Red50"
-"diff.delta" = "Cyan30"
+"diff.delta" = "Blue50"
 
 # Interface
 
-"ui.background" = { bg = "Gray90" }
-"ui.background.separator" = { fg = "Gray70" }
+"ui.background" = { fg = "Gray10", bg = "Gray90" }
+"ui.background.separator" = { fg = "Gray10" }
 "ui.cursor" = { fg = "Gray90", bg = "Gray10" }
 "ui.cursor.match" = { bg = "Gray70", modifiers = ["bold"] }
-"ui.debug.breakpoint" = { fg = "Cyan30" }
-"ui.debug.active" = { fg = "Cyan30" }
+
+"ui.debug.breakpoint" = { fg = "Green30" }
+"ui.debug.active" = { fg = "Green30" }
+"ui.gutter" = { fg = "Gray60" }
+"ui.gutter.selected" = { fg = "Gray30" }
+"ui.highlight.frameline" = { bg = "Gray70" }
 "ui.linenr" = { fg = "Gray50" }
-"ui.linenr.selected" = { modifiers = ["bold"] }
+"ui.linenr.selected" = { fg = "Gray10", modifiers = ["bold"] }
+
 "ui.statusline" = { fg = "Gray10", bg = "Gray80" }
+"ui.statusline.inactive" = { fg = "Gray50", bg = "Gray80" }
+"ui.statusline.normal" = { fg = "Cyan30" }
+"ui.statusline.insert" = { fg = "Cyan30" }
+"ui.statusline.select" = { fg = "Cyan30" }
+"ui.statusline.separator" = { fg = "Gray70" }
+
+"ui.bufferline" = { fg = "Gray10", bg = "Gray80" }
+"ui.bufferline.active" = { modifiers = ["bold"] }
+"ui.bufferline.background" = { fg = "Gray50" }
+
+#"ui.popup" = {}
+#"ui.popup.info" = {}
+"ui.window" = { fg = "Gray70" }
+#"ui.help" = {}
 "ui.text" = { fg = "Gray10" }
 "ui.text.focus" = { fg = "Blue50" }
 "ui.text.inactive" = { fg = "Gray50" }
@@ -55,6 +74,8 @@ markup = "Cyan30"
 "ui.virtual.ruler" = { bg = "Gray80" }
 "ui.virtual.whitespace" = { fg = "Gray70" }
 "ui.virtual.indent-guide" = { fg = "Gray70" }
+"ui.virtual.wrap" = { fg = "Gray70" }
+"ui.virtual.jump-label" = { fg = "Gray70" }
 
 "ui.menu" = { bg = "Gray80" }
 "ui.menu.selected" = { fg = "Gray80", bg = "Gray10" }
@@ -82,6 +103,7 @@ diagnostic = { fg = "Green30" }
 Gray10 = "#f2f4f8"
 Gray30 = "#c1c7cd"
 Gray50 = "#878d96"
+Gray60 = "#697077"
 Gray70 = "#4d5358"
 Gray80 = "#343a3f"
 Gray90 = "#21272a"
@@ -89,5 +111,6 @@ Gray100 = "#121619"
 Blue50 = "#4589ff"
 Cyan30 = "#82cfff"
 Green30 = "#6fdc8c"
+Magenta50 = "#ee5396"
 Red50 = "#fa4d56"
 Yellow30 = "#f1c21b"
