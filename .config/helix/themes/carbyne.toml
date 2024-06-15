@@ -3,6 +3,8 @@
 attribute = "Gray10"
 type = "Gray10"
 "type.builtin" = "Cyan30"
+"type.parameter" = "Gray10"
+"type.enum" = "Gray10"
 constructor = "Cyan30"
 constant = "Gray10"
 "constant.builtin" = "Cyan30"
@@ -13,27 +15,38 @@ constant = "Gray10"
 "constant.numeric.float" = "Gray10"
 string = "Green30"
 "string.regexp" = "Cyan30"
-"string.special.url" = { modifiers = ["underlined"] }
+"string.special" = "Cyan30"
+"string.special.path" = "Cyan30"
+"string.special.url" = { fg = "Cyan30", underline = { style = "line" } }
+"string.special.symbol" = "Cyan30"
 comment = "Gray50"
 variable = "Gray10"
 "variable.builtin" = "Cyan30"
+"variable.parameter" = "Gray10"
+"variable.other.member" = "Gray10"
 label = { fg = "Gray10", modifiers = ["bold"] }
 punctuation = "Gray10"
+"punctuation.delimiter" = "Gray10"
+"punctuation.bracket" = "Gray10"
 "punctuation.special" = "Cyan30"
 keyword = { fg = "Gray10", modifiers = ["bold"] }
 operator = "Gray10"
 function = "Cyan30"
-"function.builtin" = "Cyan30"
 tag = "Cyan30"
-"tag.builtin" = "Cyan30"
+namespace = "Gray10"
 special = "Cyan30"
 markup = "Cyan30"
 "markup.heading" = { fg = "Gray10", modifiers = ["bold"] }
+"markup.list" = "Green30"
+"markup.list.checked" = "Cyan30"
+"markup.list.unchecked" = "Gray50"
 "markup.bold" = { modifiers = ["bold"] }
 "markup.italic" = { modifiers = ["italic"] }
 "markup.strikethrough" = { modifiers = ["crossed_out"] }
-"markup.link" = { modifiers = ["underlined"] }
-"diff.plus" = "Green30"
+"markup.link" = { fg  = "Cyan30", underline = { style = "line" } }
+"markup.quote" = "Cyan30"
+"markup.raw" = "Cyan30"
+"diff.plus" = "Yellow30"
 "diff.minus" = "Red50"
 "diff.delta" = "Blue50"
 
@@ -44,34 +57,34 @@ markup = "Cyan30"
 "ui.cursor" = { fg = "Gray90", bg = "Gray10" }
 "ui.cursor.match" = { bg = "Gray70", modifiers = ["bold"] }
 
-"ui.debug.breakpoint" = { fg = "Green30" }
-"ui.debug.active" = { fg = "Green30" }
+"ui.debug.breakpoint" = { fg = "Red50" }
+"ui.debug.active" = { fg = "Red50" }
 "ui.gutter" = { fg = "Gray60" }
 "ui.gutter.selected" = { fg = "Gray30" }
-"ui.highlight.frameline" = { bg = "Gray70" }
+"ui.highlight.frameline" = { bg = "Red80" }
 "ui.linenr" = { fg = "Gray50" }
 "ui.linenr.selected" = { fg = "Gray10", modifiers = ["bold"] }
 
 "ui.statusline" = { fg = "Gray10", bg = "Gray80" }
 "ui.statusline.inactive" = { fg = "Gray50", bg = "Gray80" }
-"ui.statusline.normal" = { fg = "Cyan30" }
-"ui.statusline.insert" = { fg = "Cyan30" }
-"ui.statusline.select" = { fg = "Cyan30" }
-"ui.statusline.separator" = { fg = "Gray70" }
+"ui.statusline.normal" = { fg = "Blue50" }
+"ui.statusline.insert" = { fg = "Blue50" }
+"ui.statusline.select" = { fg = "Blue50" }
+#"ui.statusline.separator" = { fg = "Gray70" }
 
-"ui.bufferline" = { fg = "Gray10", bg = "Gray80" }
-"ui.bufferline.active" = { modifiers = ["bold"] }
-"ui.bufferline.background" = { fg = "Gray50" }
+"ui.bufferline" = { fg = "Gray50" }
+"ui.bufferline.active" = { fg = "Gray10", modifiers = ["bold"] }
+#"ui.bufferline.background" = { bg = "Gray80" }
 
 #"ui.popup" = {}
 #"ui.popup.info" = {}
 "ui.window" = { fg = "Gray70" }
-#"ui.help" = {}
+"ui.help" = { fg = "Gray10" }
 "ui.text" = { fg = "Gray10" }
-"ui.text.focus" = { fg = "Blue50" }
+"ui.text.focus" = { fg = "Cyan30" }
 "ui.text.inactive" = { fg = "Gray50" }
 
-"ui.virtual.ruler" = { bg = "Gray80" }
+"ui.virtual.ruler" = { bg = "Gray70" }
 "ui.virtual.whitespace" = { fg = "Gray70" }
 "ui.virtual.indent-guide" = { fg = "Gray70" }
 "ui.virtual.wrap" = { fg = "Gray70" }
@@ -81,18 +94,18 @@ markup = "Cyan30"
 "ui.menu.selected" = { fg = "Gray80", bg = "Gray10" }
 "ui.menu.scroll" = { fg = "Gray70", bg = "Gray80" }
 
-"ui.selection" = { bg = "Gray70" }
+"ui.selection" = { bg = "Blue80" }
 "ui.highlight" = { bg = "Gray80" }
 "ui.cursorline.primary" = { bg = "Gray80" }
 "ui.cursorcolumn.primary" = { bg = "Gray80" } 
 
 warning = { fg = "Yellow30" }
 error = {fg = "Red50" }
-info = {fg = "Cyan30" }
-hint = {fg = "Blue50" }
+info = {fg = "Blue50" }
+hint = {fg = "Magenta50" }
 diagnostic = { fg = "Green30" }
-"diagnostic.hint" = { fg = "Blue50" }
-"diagnostic.info" = { fg = "Cyan30" }
+"diagnostic.hint" = { fg = "Magenta50" }
+"diagnostic.info" = { fg = "Blue50" }
 "diagnostic.warning" = { fg = "Yellow30" }
 "diagnostic.error" = { fg = "Red50" }
 "diagnostic.unnecessary" = { fg = "Gray50" }
@@ -114,3 +127,5 @@ Green30 = "#6fdc8c"
 Magenta50 = "#ee5396"
 Red50 = "#fa4d56"
 Yellow30 = "#f1c21b"
+Blue80 = "#002d9c"
+Red80 = "#750e13"

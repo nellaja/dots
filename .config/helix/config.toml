@@ -5,3 +5,10 @@ theme="carbyne"
 #cursorline = true
 #cursorcolumn = true
 color-modes = true
+#bufferline = "always"
+
+#[editor.whitespace]
+#render = "all"
+
+#[editor.indent-guides]
+#render = true
