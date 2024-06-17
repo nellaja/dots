@@ -4,10 +4,10 @@ export XDG_SESSION_TYPE=wayland
 export XDG_CURRENT_DESKTOP=sway
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+# Enable if it is determined any of these are necessary
+
 #export SDL_VIDEODRIVER=wayland
 #export SDL_DYNAMIC_API=/usr/lib/libSDL2-2.0.so
-
-#export MOZ_ENABLE_WAYLAND=1
 #export QT_WAYLAND_FORCE_DPI=physical
 #export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
