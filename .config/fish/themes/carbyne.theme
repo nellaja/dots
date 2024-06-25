@@ -1,11 +1,22 @@
 # Carbyne Color Palette
 
 
+# Gray10 f2f4f8
+# Gray50 878d96
+# Gray70 4d5358
+# Gray90 21272a 
+# Cyan30 82cfff
+# Green30 6fdc8c
+# Red50 fa4d56
+# Yellow30 f1c21b
+# Blue80 002d9c
+
 # Syntax Highlighting Colors
-# Normal
+
+# ui.background(fg)
 fish_color_normal f2f4f8
 
-# function
+# function.builtin
 fish_color_command 82cfff
 
 # keyword
@@ -14,10 +25,11 @@ fish_color_keyword f2f4f8 --bold
 # string
 fish_color_quote 6fdc8c
 
-fish_color_redirection f2f4f8
+# string.special.path
+fish_color_redirection 82cfff
 
-# operator
-fish_color_end f2f4f8 --bold
+# punctuation
+fish_color_end f2f4f8
 
 # error
 fish_color_error fa4d56
@@ -25,8 +37,8 @@ fish_color_error fa4d56
 # variable.parameter
 fish_color_param f2f4f8
 
-# string.special.path
-fish_color_valid_path 82cfff
+# variable.parameter
+fish_color_valid_path f2f4f8 --underline
 
 # variable.parameter
 fish_color_option f2f4f8
@@ -38,16 +50,29 @@ fish_color_comment 878d96
 fish_color_selection --background=002d9c
 
 # operator
-fish_color_operator f2f4f8 --bold
+fish_color_operator f2f4f8
 
-# constant.character.esapce
+# constant.character.escape
 fish_color_escape 82cfff
 
 # ui.text.inactive
 fish_color_autosuggestion 878d96
 
+# warning
+fish_color_cancel f1c21b
+
+# ui.cursor.match
+fish_color_search_match --background=4d5358
+
+# ui.text.focus
+fish_color_history_current 82cfff
+
+
 # Completion Pager Colors
-fish_pager_color_progress 6272a4
-fish_pager_color_prefix 8be9fd
-fish_pager_color_completion f8f8f2
-fish_pager_color_description 6272a4
+
+fish_pager_color_progress f2f4f8
+fish_pager_color_background --background=21272a
+fish_pager_color_prefix f2f4f8
+fish_pager_color_completion f2f4f8
+fish_pager_color_description 6fdc8c
+fish_pager_color_selected_background --background=4d5358
