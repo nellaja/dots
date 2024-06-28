@@ -1,11 +1,27 @@
 theme="carbyne"
 
+
 [editor]
-#rulers = [80]
 #cursorline = true
-#cursorcolumn = true
+#rulers = [80]
+#bufferline = multiple
 color-modes = true
-#bufferline = "always"
+text-width = 80
+popup-border = "none"
+
+
+#[editor.statusline]
+#left
+#center
+#right
+
+
+[editor.lsp]
+enable = true
+
+
+[editor.cursor-shape]
+insert = "bar"
 
 #[editor.whitespace]
 #render = "all"
