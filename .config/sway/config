@@ -55,6 +55,7 @@ include colorscheme
 output * bg $wallpaper fill
 #output * bg #21272a solid_color
 
+
 # ----------------------------------------------------------------------------------
 #  IDLE CONFIGURATION
 # ----------------------------------------------------------------------------------
@@ -62,7 +63,7 @@ output * bg $wallpaper fill
 # Configure time limits for screen locking and screen poweroff.
 exec swayidle -w \
          timeout 300 '$lock' \
-         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         timeout 900 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep '$lock'
 
 
@@ -283,7 +284,7 @@ mode "volume" {
 # Default container layout for tiled containers.
 default_orientation auto
 
-
+# Set gaps when there are multiple tiled containers.
 gaps inner 7
 
 # Default border settings.

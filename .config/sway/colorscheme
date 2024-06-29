@@ -1,6 +1,6 @@
 #  =====>> COLORSCHEME CONFIGURATION
 
-## name: IBM Carbon
+## name: Carbyne
 
 set $black #000000
 set $gray100 #121619
@@ -15,7 +15,7 @@ set $gray20 #dde1e6
 set $gray10 #f2f4f8
 set $white #ffffff
 set $yellow30 #f1c21b
-set $green30 #6fdc8c5
+set $green30 #6fdc8c
 set $red50 #fa4d56
 set $blue50 #4589ff
 set $cyan30 #82cfff
