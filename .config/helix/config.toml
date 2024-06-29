@@ -2,29 +2,57 @@ theme="carbyne"
 
 
 [editor]
-#cursorline = true
-#rulers = [80]
+mouse = true
+middle-click-paste = true
+scroll-lines = 3
+#shell = <TODO>
+line-number = "absolute"
+cursorline = false
+true-color = true
+#rulers = [80, 100]
 #bufferline = multiple
 color-modes = true
 text-width = 80
 popup-border = "none"
+auto-pairs = true
 
 
-#[editor.statusline]
-#left
-#center
-#right
+[editor.statusline]
+left = ["mode", "spinner", "diagnostics"]
+center = ["file-name", "file-modification-indicator"]
+right = ["selections", "position", "total-line-numbers"]
+#separator = "|"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
 
 
 [editor.lsp]
 enable = true
+#display-messages = true
 
 
 [editor.cursor-shape]
 insert = "bar"
+normal = "block"
+select = "underline"
+
+
+[editor.file-picker]
+hidden = false
+git-ignore = false
+
 
 #[editor.whitespace]
 #render = "all"
 
-#[editor.indent-guides]
-#render = true
+
+[editor.indent-guides]
+render = true
+character = "┊"
+skip-levels = 1
+
+
+[editor.soft-wrap]
+enable = true
+max-wrap = 25
