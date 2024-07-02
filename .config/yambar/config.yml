@@ -49,8 +49,7 @@ bar:
   left:
     - label:
         content:
-          string: {text: "", font: *symbols, foreground: *blue50, margin: 11}
-
+          string: {text: "", font: *symbols, foreground: *blue50, margin: 11, on-click: "swaymsg exec fuzzel"}
     - i3:
         content:
           current:
@@ -106,32 +105,36 @@ bar:
         content:
           string: {text: "{date}  {time}"}
   right:  
-    - script:
-        path: /usr/bin/playerctl
-        args:
-          - "--follow"
-          - "metadata"
-          - "-f"
-          - |
-            status|string|{{status}}
-            artist|string|{{artist}}
-            title|string|{{title}}
-        poll-interval: 2500
+  #  - script:
+  #      path: /usr/bin/playerctl
+  #      args:
+  #        - "--follow"
+  #        - "metadata"
+  #        - "-f"
+  #        - |
+  #          status|string|{{status}}
+  #          artist|string|{{artist}}
+  #          title|string|{{title}}
+  #      poll-interval: 2500
+  #      content:
+  #        map:
+  #          default: {empty: {}}
+  #          conditions:
+  #           status == Stopped: {empty: {}}
+  #           status == Paused:
+  #              list:
+  #                items:
+  #                  - string: {text: "  ", font: *symbols, foreground: *gray50} 
+  #                  - string: {text: "{artist} - {title}", foreground: *gray50, max: 31, right-margin: 44}
+  #            status == Playing: 
+  #              list:
+  #                items:
+  #                  - string: {text: "  ", font: *symbols}
+  #                  - string: {text: "{artist} - {title}", max: 31, right-margin: 44}
+    - label:
         content:
-          map:
-            default: {empty: {}}
-            conditions:
-              status == Stopped: {empty: {}}
-              status == Paused:
-                list:
-                  items:
-                    - string: {text: "  ", font: *symbols, foreground: *gray50} 
-                    - string: {text: "{artist} - {title}", foreground: *gray50, max: 31, right-margin: 44}
-              status == Playing: 
-                list:
-                  items:
-                    - string: {text: "  ", font: *symbols}
-                    - string: {text: "{artist} - {title}", max: 31, right-margin: 44}
+          - string: {text: "", font: *symbols, right-margin: 11, on-click: "swaymsg exec playerctl play"}
+          - string: {text: "", font: *symbols, right-margin: 44, on-click: "swaymsg exec playerctl pause"}  
     - pipewire:
         content:
           map:
@@ -142,28 +145,58 @@ bar:
                     (form_factor == "headphones") && (~muted):
                       list:
                         items:
-                          - string: {text: "󰋋 ", font: *symbols, left-margin: 11}
-                          - string: {text: "{linear_volume}%", right-margin: 11}
+                          - string: {text: " ", font: *symbols, left-margin: 11}
+                          - string: {text: "{cubic_volume}%", right-margin: 11}
                     (form_factor == "headphones") && (muted):
                       list:
                         items:
-                          - string: {text: "󰟎 ", font: *symbols, foreground: *gray50, left-margin: 11}
-                          - string: {text: "{linear_volume}%", foreground: *gray50, right-margin: 11}                   
+                          - string: {text: " ", font: *symbols, foreground: *gray50, left-margin: 11}
+                          - string: {text: "{cubic_volume}%", foreground: *gray50, right-margin: 11}                   
                     (form_factor != "headphones") && (muted):
                       list:
                         items:
-                          - string: {text: "󰝟 ", font: *symbols, foreground: *gray50, left-margin: 11}
-                          - string: {text: "{linear_volume}%", foreground: *gray50, right-margin: 11}
+                          - string: {text: " ", font: *symbols, foreground: *gray50, left-margin: 11}
+                          - string: {text: "{cubic_volume}%", foreground: *gray50, right-margin: 11}
                   default:
                     list:
                       items:
                         - ramp:
-                            tag: linear_volume
+                            tag: cubic_volume
                             items:
-                              - string: {text: "󰕿 ", font: *symbols, left-margin: 11}
-                              - string: {text: "󰖀 ", font: *symbols, left-margin: 11}
-                              - string: {text: "󰕾 ", font: *symbols, left-margin: 11}
-                        - string: {text: "{linear_volume}%", right-margin: 11}
+                              - string: {text: " ", font: *symbols, left-margin: 11}
+                              - string: {text: " ", font: *symbols, left-margin: 11}
+                              - string: {text: " ", font: *symbols, left-margin: 11}
+                        - string: {text: "{cubic_volume}%", right-margin: 11}
+              type == source:
+                map:
+                  conditions:
+                    (name == "alsa_input.usb-BLUE_MICROPHONE_Blue_Snowball_797_2018_10_27_43233-00.mono-fallback") && (~muted):
+                      - string: {text: "", font: *symbols, left-margin: 11}
+                    (name == "alsa_input.usb-BLUE_MICROPHONE_Blue_Snowball_797_2018_10_27_43233-00.mono-fallback") && (muted):
+                      - string: {text: "", font: *symbols, foreground: *gray50, left-margin: 11}
+                  default:
+                    - string: {text: "", font: *symbols, foreground: *gray90, left-margin: 11}
+    - script:
+        path: ~/bin/pacman.sh
+        args: []
+        content:
+          map:
+            default:
+              - string: {text: "󰮯", font: *symbols, foreground: *blue50, left-margin: 11}
+              - string: {text: "{pkg}"}
+            conditions:
+              pkg == 0:
+                - string: {text: "󰮯 ", font: *symbols, foreground: *gray90, left-margin: 11}
+    - script:
+        path: ~/bin/bluetooth.sh
+        args: []
+        content:
+          map:
+            conditions:
+              status == "yes":
+                - string: {text: "", font: *symbols, left-margin: 11, on-click: "swaymsg exec bluetoothctl power off"}
+              status == "no":
+                - string: {text: "", font: *symbols, foreground: *gray50, left-margin: 11, on-click: "swaymsg exec bluetoothctl power on"}
     - network:   
         name: enp42s0
         content:
@@ -172,6 +205,21 @@ bar:
               ~carrier: {empty: {}}
               carrier:
                 map:
-                  default: {string: {text: , font: *awesome, margin: 11}}
+                  default: {string: {text: "", font: *symbols, margin: 11}}
                   conditions:
-                    ipv4 == "": {string: {text: , font: *awesome, foreground: *red50, margin: 11}}
+                    ipv4 == "": {string: {text: "", font: *symbols, foreground: *red50, margin: 11}}
+    - network:
+        name: wlp41s0
+        content:
+          map:
+            conditions:
+              ~carrier: {empty: {}}
+              carrier:
+                map:
+                  default: {string: {text: "", font: *symbols, margin: 11}}
+                  conditions:
+                    ipv4 == "": {string: {text: "", font: *symbols, foreground: *red50, margin: 11}}          
+    - label:
+        content:
+          string: {text: "", font: *symbols, margin: 11}
+    
