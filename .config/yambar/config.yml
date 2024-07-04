@@ -1,6 +1,8 @@
 # Global Anchors
 awesome: &awesome Font Awesome 6 Free:style=solid:pixelsize=20
-symbols: &symbols Symbols Nerd Font:style=Regular:pixelsize=29
+symbols: &symbols Symbols Nerd Font:style=Regular:pixelsize=23
+symbols29: &symbols29 Symbols Nerd Font:style=Regular:pixelsize=29
+symbols26: &symbols26 Symbols Nerd Font:style=Regular:pixelsize=26
 monofont: &monofont IBM Plex Mono:pixelsize=22
 
 # (Blue 50)
@@ -49,7 +51,7 @@ bar:
   left:
     - label:
         content:
-          string: {text: "", font: *symbols, foreground: *blue50, margin: 11, on-click: "swaymsg exec fuzzel"}
+          string: {text: "", font: *symbols29, foreground: *blue50, margin: 11, on-click: "swaymsg exec fuzzel"}
     - i3:
         content:
           current:
@@ -105,6 +107,7 @@ bar:
         content:
           string: {text: "{date}  {time}"}
   right:  
+  # Script for displaying songs on yambar no longer used; moved to notifications  
   #  - script:
   #      path: /usr/bin/playerctl
   #      args:
@@ -133,8 +136,8 @@ bar:
   #                  - string: {text: "{artist} - {title}", max: 31, right-margin: 44}
     - label:
         content:
-          - string: {text: "", font: *symbols, right-margin: 11, on-click: "swaymsg exec playerctl play"}
-          - string: {text: "", font: *symbols, right-margin: 44, on-click: "swaymsg exec playerctl pause"}  
+          - string: {text: "", font: *symbols26, margin: 11, on-click: "swaymsg exec playerctl play"}
+          - string: {text: "", font: *symbols26, right-margin: 33, on-click: "swaymsg exec playerctl pause"}  
     - pipewire:
         content:
           map:
@@ -171,22 +174,22 @@ bar:
                 map:
                   conditions:
                     (name == "alsa_input.usb-BLUE_MICROPHONE_Blue_Snowball_797_2018_10_27_43233-00.mono-fallback") && (~muted):
-                      - string: {text: "", font: *symbols, left-margin: 11}
+                      - string: {text: "", font: *symbols, left-margin: 11, right-margin: 374}
                     (name == "alsa_input.usb-BLUE_MICROPHONE_Blue_Snowball_797_2018_10_27_43233-00.mono-fallback") && (muted):
-                      - string: {text: "", font: *symbols, foreground: *gray50, left-margin: 11}
+                      - string: {text: "", font: *symbols, foreground: *gray50, left-margin: 11, right-margin: 374}
                   default:
-                    - string: {text: "", font: *symbols, foreground: *gray90, left-margin: 11}
+                    - string: {text: "", font: *symbols, foreground: *gray90, left-margin: 11, right-margin: 374}
     - script:
         path: ~/bin/pacman.sh
         args: []
         content:
           map:
             default:
-              - string: {text: "󰮯", font: *symbols, foreground: *blue50, left-margin: 11}
-              - string: {text: "{pkg}"}
+              - string: {text: "󰮯 ", font: *symbols, foreground: *blue50, left-margin: 11}
+              - string: {text: "{pkg}", right-margin: 11}
             conditions:
               pkg == 0:
-                - string: {text: "󰮯 ", font: *symbols, foreground: *gray90, left-margin: 11}
+                - string: {text: "󰮯  000", font: *symbols, foreground: *gray90, margin: 11}
     - script:
         path: ~/bin/bluetooth.sh
         args: []
@@ -194,9 +197,9 @@ bar:
           map:
             conditions:
               status == "yes":
-                - string: {text: "", font: *symbols, left-margin: 11, on-click: "swaymsg exec bluetoothctl power off"}
+                - string: {text: "", font: *symbols, margin: 11, on-click: "swaymsg exec bluetoothctl power off"}
               status == "no":
-                - string: {text: "", font: *symbols, foreground: *gray50, left-margin: 11, on-click: "swaymsg exec bluetoothctl power on"}
+                - string: {text: "", font: *symbols, foreground: *gray50, margin: 11, on-click: "swaymsg exec bluetoothctl power on"}
     - network:   
         name: enp42s0
         content:
@@ -221,5 +224,5 @@ bar:
                     ipv4 == "": {string: {text: "", font: *symbols, foreground: *red50, margin: 11}}          
     - label:
         content:
-          string: {text: "", font: *symbols, margin: 11}
+          string: {text: "", font: *symbols, margin: 11, on-click: "swaymsg exec powermenu.sh"}
     
