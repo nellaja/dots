@@ -1,0 +1,5 @@
+# Yazi Configuration
+
+[manager]
+linemode       = "mtime"
+show_hidden    = true
