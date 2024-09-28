@@ -6,7 +6,7 @@
 export PATH=~/bin:$PATH
 
 # Disable history logging for bash shell
-export HISTSIZE=0
+export HISTSIZE=19
 
 # Start Sway
 sway-run
