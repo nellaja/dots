@@ -1,6 +1,8 @@
 sway
 foot
 mako
+xdg-desktop-portal-wlr
+xdg-desktop-portal-gtk
 
 cliphist
 fuzzel
@@ -23,6 +25,5 @@ waybar
 wev
 wl-clipboard
 xarchiver
-xdg-desktop-portal-gtk
-xdg-desktop-portal-wlr
+
 xorg-xwayland
