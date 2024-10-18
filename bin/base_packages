@@ -1,3 +1,6 @@
+pipewire
+wireplumber
+
 avahi
 bash-completion
 bash-language-server
@@ -50,7 +53,6 @@ nvme-cli
 obsidian
 pacman-contrib
 pavucontrol
-pipewire
 pipewire-alsa
 pipewire-jack
 pipewire-pulse
@@ -82,7 +84,6 @@ unrar
 unzip
 usbutils
 wget
-wireplumber
 xdg-utils
 yaml-language-server
 yazi
