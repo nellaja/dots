@@ -3,6 +3,7 @@ foot
 mako
 xdg-desktop-portal-wlr
 xdg-desktop-portal-gtk
+polkit-gnome
 
 cliphist
 fuzzel
@@ -10,7 +11,7 @@ grim
 gvfs
 gvfs-smb
 libgsf
-polkit-gnome
+
 poppler-glib
 slurp
 swaybg
