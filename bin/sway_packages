@@ -7,6 +7,7 @@ polkit-gnome
 qt5-wayland
 qt6-wayland
 waybar
+swaybg
 
 cliphist
 fuzzel
