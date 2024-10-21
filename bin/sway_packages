@@ -8,9 +8,10 @@ qt5-wayland
 qt6-wayland
 waybar
 swaybg
-
-cliphist
 fuzzel
+wl-clipboard
+cliphist
+
 grim
 gvfs
 gvfs-smb
@@ -18,7 +19,6 @@ libgsf
 
 poppler-glib
 slurp
-swaybg
 swayidle
 swaylock
 thunar
@@ -27,7 +27,6 @@ thunar-media-tags-plugin
 thunar-volman
 tumbler
 wev
-wl-clipboard
 xarchiver
 
 xorg-xwayland
