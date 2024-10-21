@@ -17,13 +17,14 @@ grim
 slurp
 wev
 imv
+brightnessctl
+thunar
 
 
 gvfs
 gvfs-smb
 libgsf
 poppler-glib
-thunar
 thunar-archive-plugin
 thunar-media-tags-plugin
 thunar-volman
