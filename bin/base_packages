@@ -2,8 +2,8 @@ pipewire
 pipewire-jack
 wireplumber
 zram-generator
-
 avahi
+
 bash-completion
 bash-language-server
 bat
