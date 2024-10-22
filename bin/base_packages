@@ -5,6 +5,7 @@ zram-generator
 avahi
 bluez
 cups
+firewalld
 
 bash-completion
 bash-language-server
@@ -22,8 +23,6 @@ fish
 ffmpegthumbnailer
 firefox
 firefox-i18n-en-us
-firewalld
-foot
 foot-terminfo
 fzf
 gimp
