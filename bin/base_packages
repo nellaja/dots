@@ -6,6 +6,7 @@ avahi
 bluez
 cups
 firewalld
+python
 
 bash-completion
 bash-language-server
@@ -62,7 +63,6 @@ pkgstats
 plocate
 poppler
 poppler-data
-python
 p7zip
 qt6-base
 qt6-wayland
