@@ -1,12 +1,15 @@
+python
+bluez
+bluez-utils
+firewalld
+libnotify
+avahi
+
 pipewire
 pipewire-jack
 wireplumber
 zram-generator
-avahi
-bluez
 cups
-firewalld
-python
 
 bash-completion
 bash-language-server
