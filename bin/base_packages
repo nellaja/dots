@@ -1,6 +1,7 @@
 pipewire
 pipewire-jack
 wireplumber
+zram-generator
 
 avahi
 bash-completion
@@ -89,5 +90,4 @@ xdg-utils
 yaml-language-server
 yazi
 zip
-zram-generator
 zoxide
