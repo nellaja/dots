@@ -17,9 +17,6 @@ bluez-utils
 firewalld
 libnotify
 avahi
-
-
-wireplumber
 zram-generator
 cups
 
