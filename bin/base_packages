@@ -8,6 +8,7 @@ wireplumber
 htop
 smartmontools
 xdg-utils
+network-manager-applet
 
 
 python
