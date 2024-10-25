@@ -1,3 +1,15 @@
+pipewire
+pipewire-alsa
+pipewire-jack
+pipewire-pulse
+gst-plugin-pipewire
+libpulse
+wireplumber
+htop
+smartmontools
+xdg-utils
+
+
 python
 bluez
 bluez-utils
@@ -5,8 +17,7 @@ firewalld
 libnotify
 avahi
 
-pipewire
-pipewire-jack
+
 wireplumber
 zram-generator
 cups
@@ -58,9 +69,6 @@ nvme-cli
 obsidian
 pacman-contrib
 pavucontrol
-pipewire-alsa
-pipewire-jack
-pipewire-pulse
 pkgfile
 pkgstats
 plocate
@@ -76,7 +84,6 @@ rsync
 rtkit
 shellcheck
 shfmt
-smartmontools
 snapper
 snap-pac
 steam
@@ -88,7 +95,6 @@ unrar
 unzip
 usbutils
 wget
-xdg-utils
 yaml-language-server
 yazi
 zip
