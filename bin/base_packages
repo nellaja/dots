@@ -16,6 +16,7 @@ pkgstats
 plocate
 python
 reflector
+rust
 smartmontools
 upower
 usbutils
