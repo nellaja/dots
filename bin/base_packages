@@ -65,6 +65,7 @@ ripgrep
 ripgrep-all
 rsync
 sd
+shellcheck
 tealdeer
 wget
 zoxide
