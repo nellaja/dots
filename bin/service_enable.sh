@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-set -e
-shopt -s extglob
-shopt -s lastpipe
+set -euo pipefail
+IFS=$'\n\t'
 
 clear
 
