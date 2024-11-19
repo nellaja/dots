@@ -7,4 +7,4 @@ clear
 
 mapfile -t packages < $1
 
-sudo pacman -S --needed --noconfirm "${packages[@]}"
+sudo pacman -S --noconfirm "${packages[@]}"
