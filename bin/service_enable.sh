@@ -12,4 +12,4 @@ sudo systemctl start /dev/zram0
 # Enable System Services and Timers
 sudo systemctl enable avahi-daemon bluetooth cups firewalld smartd systemd-timesyncd 
 sudo systemctl enable fstrim.timer paccache.timer pkgfile-update.timer
-systemctl --user enable pipewire.socket pipewire-pulse.socket wireplumber
+systemctl --user enable pipewire pipewire-pulse wireplumber
