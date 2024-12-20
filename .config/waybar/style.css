@@ -1,0 +1,107 @@
+/* =============================================================================
+ *
+ * Waybar styles
+ *
+ * Styles reference: https://github.com/Alexays/Waybar/wiki/Configuration
+ *
+ * =========================================================================== */
+
+
+/* -----------------------------------------------------------------------------
+ * Base styles
+ * -------------------------------------------------------------------------- */
+
+/* Reset all styles */
+* {
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* The whole bar */
+#waybar {
+    background-color: #121619; /* Gray 90: unfocused/background */
+    color: #f2f4f8; /* Gray 10: focused/text */
+    font-family: "IBM Plex Sans", "Symbols Nerd Font";
+    font-size: 21px;
+}
+
+/* -----------------------------------------------------------------------------
+ * Module styles
+ * -------------------------------------------------------------------------- */
+
+/* Each module */
+
+#clock {
+    /* No styles */
+}
+
+#mode {
+    color: #f1c21b; /* Sway palette: urgent/text */
+    margin-right: 66px;
+}
+
+#window {
+    margin-left: 66px;
+}
+
+#custom-distro {
+    padding: 11;
+    color: #4589ff;
+    font-size: 24px
+}
+
+#scratchpad {
+    padding: 11;
+    color: #4589ff
+}
+
+#workspaces button {
+    border-top-width: 2px;
+    border-top-style: solid;
+    border-top-color: transparent;
+    padding: 11;
+    color: #878d96;
+/*    background-color: #4589ff */
+}
+
+#workspaces button:hover {
+    /* Reset all hover styles */
+    background: inherit;
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+#workspaces button.focused {
+    border-top-color: #4589ff;
+    color: #f2f4f8;
+}
+
+#workspaces button.urgent {
+    border-top-color: #fa4d56;
+}
+
+#network {
+    padding: 11;
+}
+
+#custom-pacman {
+    padding: 11;
+    margin-left: 22;
+}
+
+#custom-notification {
+    padding: 11;
+}
+
+#custom-idle {
+    padding: 11;
+    margin-left: 22;
+}
+
+#custom-power {
+    background-color: #4589ff;
+    padding: 11;
+}

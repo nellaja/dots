@@ -1,0 +1,170 @@
+// =============================================================================
+//
+// Waybar configuration
+//
+// Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
+//
+// =============================================================================
+
+{
+    // -------------------------------------------------------------------------
+    // Global configuration
+    // -------------------------------------------------------------------------
+
+    "layer": "bottom",
+    "position": "top",
+    "height": 33,
+
+    "modules-left": [
+        "custom/distro",            
+        "sway/workspaces",
+        "sway/scratchpad",
+        "sway/window"
+    ],
+    "modules-center": [
+        "clock",
+    ],
+    "modules-right": [
+        "sway/mode",
+        "pulseaudio",
+        "bluetooth",
+        "network",
+        "custom/pacman",
+        "custom/notification",
+        "custom/idle",
+        "custom/power",
+    ],
+
+
+    // -------------------------------------------------------------------------
+    // Modules
+    // -------------------------------------------------------------------------
+
+    "custom/distro": {
+      "format": "",
+      "on-click": "fuzzel",
+      "tooltip": false,
+    },
+
+    "sway/workspaces": {
+    },
+
+    "sway/scratchpad": {
+        "format": "{icon}  {count}",
+        "show-empty": false,
+        "format-icons": [""],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+   
+    "sway/window": {
+        "format": "{app_id}",
+        "min-length": 5,
+        "max-length": 120,
+        "rewrite": {
+
+            // == Terminal ==
+            "foot": 
+            "<span foreground='#4589ff'> </span>  Foot",
+
+            // == Browser ==
+
+            "firefox": 
+            "<span foreground='#4589ff'> </span>  Firefox",
+            "librewolf": 
+            "<span foreground='#4589ff'> </span>  Librewolf",
+
+            // == Media ==
+
+            "gimp(.*)": 
+            "<span foreground='#4589ff'> </span> GIMP",
+        }
+    },
+
+    "clock": {
+      "format": "{:%a  %b %d  %R}", 
+      "tooltip": false,
+    },
+
+    "sway/mode": {
+        "format": "{}", 
+        "tooltip": false
+    },
+    
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "format-muted": "",
+        "format-icons": {
+            "default": ["","",""],
+            "headphone": "",
+            "headset": ""
+        },
+        "tooltip": true,
+        "tooltip-format": "Device: {desc}",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "pavucontrol",
+        //"on-click": "~/.config/waybar/scripts/volume-control.sh -o m",
+        //"on-scroll-up": "~/.config/waybar/scripts/volume-control.sh -o i",
+        //"on-scroll-down": "~/.config/waybar/scripts/volume-control.sh -o d",
+        "min-length": 8,
+        "max-length": 8
+    },
+    
+    //"wireplumber": {
+    //    "format": "{icon} {volume}%",
+    //    "format-muted": "", // Icon: volume-mute
+    //    "format-icons": ["","",""], // Icons: volume-down, volume-up
+    //    "scroll-step": 2,
+    //    "reverse-scrolling": 1,
+    //    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    //    "on-click-right": "pavucontrol",
+    //    "tooltip": true
+    //},
+     
+    "network": {
+        "format-wifi": "󰖩", // Icon: wifi
+        "format-ethernet":"", // Icon: ethernet
+        "format-disconnected": "",
+        "tooltip-format": "{ifname}: {ipaddr} (speed: {bandwidthDownBytes})"
+    },
+
+    "bluetooth": {
+        "format": "󰂰",
+        "format-disabled": "󰂲",
+        "format-connected": "󰂱",
+        "format-connected-battery": "󰂱",
+
+        "tooltip-format": 
+            "{num_connections} connected",
+        "tooltip-format-disabled": 
+            "Bluetooth Disabled",
+        "tooltip-format-connected": 
+            "{num_connections} connected{device_enumerate}",
+        "tooltip-format-enumerate-connected": 
+            "{device_alias}",
+        "tooltip-format-enumerate-connected-battery": 
+            "{device_alias}: {device_battery_percentage}%",
+
+        "on-click": "~/.config/waybar/scripts/bluetooth-menu.sh",
+        "on-click-right": "kitty --title '󰂯  Bluetooth TUI' bash -c bluetui",
+        "interval": 1,
+        "min-length": 1,
+        "max-length": 1
+    },
+
+    "custom/pacman": {
+        "format": "󰮯",
+    },
+    
+    "custom/idle": {
+        "format": "",
+    },
+
+    "custom/notification": {
+        "format": "",
+    },
+
+    "custom/power": {
+        "format": "",
+    }
+}
