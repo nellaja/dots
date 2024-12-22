@@ -13,19 +13,19 @@
 
     "layer": "bottom",
     "position": "top",
-    "height": 33,
+    "height": 49,
 
     "modules-left": [
         "custom/distro",            
         "sway/workspaces",
         "sway/scratchpad",
-        "sway/window"
+        "sway/window",
+        "sway/mode",
     ],
     "modules-center": [
         "clock",
     ],
     "modules-right": [
-        "sway/mode",
         "pulseaudio",
         "bluetooth",
         "network",

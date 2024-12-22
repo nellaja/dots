@@ -1,6 +1,5 @@
 # SWAY CONFIG
 
-# Copy to ~/.config/sway/config 
 # Reference `man 5 sway`
 # Reference 'man 5 sway-input'
 # Reference 'man 5 sway-output'
@@ -57,14 +56,23 @@ output * bg $wallpaper fill
 
 
 # ----------------------------------------------------------------------------------
-#  IDLE CONFIGURATION
+#  IDLE & LOCK CONFIGURATION
 # ----------------------------------------------------------------------------------
 
-# Configure time limits for screen locking and screen poweroff.
-exec swayidle -w \
-         timeout 300 '$lock' \
-         timeout 900 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep '$lock'
+# Lock screen immediately.
+bindsym $mod+Escape exec "$lock; sleep 1; pkill -USR1 swayidle"
+
+# Disable screen locking and monitor shutoff (useful for when KMS is being used)
+bindsym $mod+Shift+Escape exec mylock lock-off
+
+# Resume normal swayidle configuration
+bindsym $mod+Control+Escape exec mylock enable-lock
+
+# Upon startup, screen locking and screen shutdown enabled.
+exec mylock enable-lock
+#exec swayidle -w \
+#    timeout 5 '$lock' \
+#    timeout 10 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
 
 
 # ----------------------------------------------------------------------------------
@@ -212,9 +220,6 @@ input type:keyboard {
     # Exit sway.
     bindsym $mod+Shift+x exit
 
-    # Lock screen.
-    bindsym $mod+Escape exec "$lock; sleep 1; pkill -USR1 swayidle"
-
 
 # ----------------------------------------------------------------------------------
 #  CUSTOM MODES
@@ -309,7 +314,13 @@ font pango:$font_family $font_size
 xwayland enable
 
 # Execute additional WM components.
-exec_always "killall yambar; yambar"
+bar {
+    # Run waybar instead of default swaybar
+    swaybar_command waybar
+}
+
+
+#exec_always "killall yambar; yambar"
 exec fnott >/tmp/fnott.log 2>&1
 
 # Special window controls.
