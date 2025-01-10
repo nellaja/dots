@@ -14,9 +14,11 @@
     "layer": "bottom",
     "position": "top",
     "height": 49,
+    "spacing": 0,
 
     "modules-left": [
-        "custom/distro",            
+    //    "custom/distro",            
+        "image#distro",
         "sway/workspaces",
         "sway/scratchpad",
         "sway/window",
@@ -40,10 +42,12 @@
     // Modules
     // -------------------------------------------------------------------------
 
-    "custom/distro": {
-      "format": "",
-      "on-click": "fuzzel",
-      "tooltip": false,
+    "image#distro": {
+        "path": "/home/aj/TX.png",
+        "size": 29,
+        "interval": 16807,
+        "on-click": "fuzzel",
+        "tooltip": false,
     },
 
     "sway/workspaces": {
@@ -64,6 +68,7 @@
         "rewrite": {
 
             // == Terminal ==
+
             "foot": 
             "<span foreground='#4589ff'> </span>  Foot",
 
@@ -77,8 +82,13 @@
             // == Media ==
 
             "gimp(.*)": 
-            "<span foreground='#4589ff'> </span> GIMP",
+            "<span foreground='#4589ff'> </span>  Gimp",
         }
+    },
+
+    "sway/mode": {
+        "format": "{}", 
+        "tooltip": false
     },
 
     "clock": {
@@ -86,11 +96,6 @@
       "tooltip": false,
     },
 
-    "sway/mode": {
-        "format": "{}", 
-        "tooltip": false
-    },
-    
     "pulseaudio": {
         "format": "{icon}  {volume}%",
         "format-muted": "",
@@ -103,37 +108,13 @@
         "tooltip-format": "Device: {desc}",
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "on-click-right": "pavucontrol",
-        //"on-click": "~/.config/waybar/scripts/volume-control.sh -o m",
-        //"on-scroll-up": "~/.config/waybar/scripts/volume-control.sh -o i",
-        //"on-scroll-down": "~/.config/waybar/scripts/volume-control.sh -o d",
-        "min-length": 8,
-        "max-length": 8
     },
     
-    //"wireplumber": {
-    //    "format": "{icon} {volume}%",
-    //    "format-muted": "", // Icon: volume-mute
-    //    "format-icons": ["","",""], // Icons: volume-down, volume-up
-    //    "scroll-step": 2,
-    //    "reverse-scrolling": 1,
-    //    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-    //    "on-click-right": "pavucontrol",
-    //    "tooltip": true
-    //},
-     
-    "network": {
-        "format-wifi": "󰖩", // Icon: wifi
-        "format-ethernet":"", // Icon: ethernet
-        "format-disconnected": "",
-        "tooltip-format": "{ifname}: {ipaddr} (speed: {bandwidthDownBytes})"
-    },
-
     "bluetooth": {
         "format": "󰂰",
         "format-disabled": "󰂲",
         "format-connected": "󰂱",
         "format-connected-battery": "󰂱",
-
         "tooltip-format": 
             "{num_connections} connected",
         "tooltip-format-disabled": 
@@ -144,27 +125,31 @@
             "{device_alias}",
         "tooltip-format-enumerate-connected-battery": 
             "{device_alias}: {device_battery_percentage}%",
-
-        "on-click": "~/.config/waybar/scripts/bluetooth-menu.sh",
-        "on-click-right": "kitty --title '󰂯  Bluetooth TUI' bash -c bluetui",
         "interval": 1,
-        "min-length": 1,
-        "max-length": 1
+    },
+
+    "network": {
+        "format-wifi": "󰖩", // Icon: wifi
+        "format-ethernet":"", // Icon: ethernet
+        "format-disconnected": "",
+        "tooltip-format": "{ifname}: {ipaddr} (speed: {bandwidthDownBytes})"
     },
 
     "custom/pacman": {
         "format": "󰮯",
     },
     
-    "custom/idle": {
-        "format": "",
-    },
-
     "custom/notification": {
         "format": "",
     },
 
+    "custom/idle": {
+        "format": "",
+    },
+
     "custom/power": {
         "format": "",
+        "tooltip": false,
+        "on-click": "powermenu.sh"
     }
 }

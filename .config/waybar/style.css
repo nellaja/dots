@@ -40,13 +40,9 @@
 
 /* Each module */
 
-#custom-distro {
-    margin-left: 7;
-    margin-right: 21;
-    padding-left: 7;
-    padding-right: 7;
-    color: #4589ff;
-    font-size: 23px;
+#image {    
+    margin-left: 14px;
+    margin-right: 23px;
 }
 
 #workspaces button {
@@ -56,10 +52,12 @@
     border-bottom-width: 2px;
     border-bottom-style: solid;
     border-bottom-color: transparent;
-    margin-top: 2;
-    margin-bottom: 2;
-    padding-left: 7;
-    padding-right: 7;
+    margin-top: 5px;
+    margin-bottom: 5px; 
+    margin-right: 5px;
+    margin-left: 5px;
+    padding-left: 4px;
+    padding-right: 4px;
     color: #878d96;
 }
 
@@ -80,66 +78,57 @@
 }
 
 #scratchpad {
-    margin-left: 21;
-    padding-left: 7;
-    padding-right: 7;
+    margin-left: 23px;
     color: #4589ff
 }
 
 #window {
-    margin-left: 84px;
-    padding-left: 7;
-    padding-right: 7;
+    margin-left: 112px;
 }
 
 #mode {
     margin-left: 630px;
-    padding-left: 7;
-    padding-right: 7;
     color: #f1c21b; 
 }
 
 #clock {
-    padding-left: 7;
-    padding-right: 7;
 }
 
 #pulseaudio {
-    padding-left: 7;
-    padding-right: 7;
+    padding-left: 7px;
+    padding-right: 7px;
 }
 
 #bluetooth {
-    margin-left: 21;
-    padding-left: 7;
-    padding-right: 7;
+    margin-left: 28px;
+    padding-left: 7px;
+    padding-right: 7px;
     font-size: 23px;
 }
 
 #network {
-    padding-left: 7;
-    padding-right: 7;
+    padding-left: 7px;
+    padding-right: 7px;
 }
 
 #custom-pacman {
-    margin-left: 21;
-    padding-left: 7;
-    padding-right: 7;
+    margin-left: 28px;
+    padding-left: 7px;
+    padding-right: 7px;
 }
 
 #custom-notification {
-    padding-left: 7;
-    padding-right: 7;
+    padding-left: 7px;
+    padding-right: 7px;
 }
 
 #custom-idle {
-    margin-left: 21;
-    padding-left: 7;
-    padding-right: 7;
+    margin-left: 28px;
+    padding-left: 7px;
+    padding-right: 7px;
 }
 
 #custom-power {
-    padding-left: 7;
-    padding-right: 7;
-    margin-right: 7;
+    padding-left: 7px;
+    margin-right: 14px;
 }

@@ -1,16 +1,24 @@
 #!/usr/bin/env bash
 
-entries="󰍃 Logout\n󰜉 Reboot\n󰤂 Shutdown"
+config="$HOME/.config/waybar/powermenu.ini"
 
-selected=$(echo -e $entries | fuzzel --dmenu | awk '{print tolower($2)}')
+actions=$(echo -e "\tLock\n\tShutdown\n\tReboot\n\tLogout")
 
+# Display logout menu
+selected_option=$(echo -e "$actions" | fuzzel --dmenu -i --config "${config}" || pkill -x fuzzel)
 
-case $selected in
-  logout)
-    swaymsg exit;;
-  reboot)
-    exec systemctl reboot;;
-  shutdown)
-    exec systemctl poweroff;;
-esac
-  
+# Perform actions based on the selected option
+case "$selected_option" in
+*Lock)
+  swaylock -f -e -i ~/wallpaper_lock.png -s fill; sleep 1; pkill -USR1 swayidle
+  ;;
+*Shutdown)
+  systemctl poweroff
+  ;;
+*Reboot)
+  systemctl reboot
+  ;;
+*Logout)
+  swaymsg exit
+  ;;
+esac 
