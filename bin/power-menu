@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-config="$HOME/.config/waybar/powermenu.ini"
+config="$HOME/.config/fuzzel/powermenu.ini"
 
 actions=$(echo -e "\tLock\n\tShutdown\n\tReboot\n\tLogout")
 

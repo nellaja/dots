@@ -32,7 +32,6 @@
         "bluetooth",
         "network",
         "custom/pacman",
-        "custom/notification",
         "custom/idle",
         "custom/power",
     ],
@@ -136,20 +135,26 @@
     },
 
     "custom/pacman": {
-        "format": "󰮯",
+        "exec": "pacman-update",
+        "return-type": "json",
+        "format": "{}",
+        "interval": 600,
+        "tooltip": true,
     },
     
-    "custom/notification": {
-        "format": "",
-    },
-
     "custom/idle": {
-        "format": "",
+        "exec": "idle-control status",
+        "interval": "once",
+        "signal": 7,
+        "return-type": "json",
+        "tooltip": true,
+        "format": "{}",
+        "on-click": "idle-control toggle"
     },
 
     "custom/power": {
         "format": "",
         "tooltip": false,
-        "on-click": "powermenu.sh"
+        "on-click": "power-menu"
     }
 }

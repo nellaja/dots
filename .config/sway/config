@@ -59,20 +59,17 @@ output * bg $wallpaper fill
 #  IDLE & LOCK CONFIGURATION
 # ----------------------------------------------------------------------------------
 
-# Lock screen immediately.
+# Lock screen immediately
 bindsym $mod+Escape exec "$lock; sleep 1; pkill -USR1 swayidle"
 
-# Disable screen locking and monitor shutoff (useful for when KMS is being used)
-bindsym $mod+Shift+Escape exec mylock lock-off
+# Toggle enable/disable of swayidle/swaylock (useful for when KMS is being used)
+bindsym $mod+Shift+Escape exec idle-control toggle
 
-# Resume normal swayidle configuration
-bindsym $mod+Control+Escape exec mylock enable-lock
+# Open Power Menu Under Waybar Icon
+bindsym $mod+Control+Escape exec power-menu
 
-# Upon startup, screen locking and screen shutdown enabled.
-exec mylock enable-lock
-#exec swayidle -w \
-#    timeout 5 '$lock' \
-#    timeout 10 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+# Upon startup, swayidle/swaylock enabled
+exec idle-control on
 
 
 # ----------------------------------------------------------------------------------
@@ -319,8 +316,7 @@ bar {
     swaybar_command waybar
 }
 
-
-#exec_always "killall yambar; yambar"
+exec idle-control on
 exec fnott >/tmp/fnott.log 2>&1
 
 # Special window controls.

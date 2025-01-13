@@ -115,20 +115,20 @@
     margin-left: 28px;
     padding-left: 7px;
     padding-right: 7px;
+    font-size: 23px;
 }
 
-#custom-notification {
-    padding-left: 7px;
-    padding-right: 7px;
+#custom-pacman.updates {
+    color: #4589ff;
 }
 
 #custom-idle {
-    margin-left: 28px;
     padding-left: 7px;
     padding-right: 7px;
 }
 
 #custom-power {
-    padding-left: 7px;
+    margin-left: 28px;
     margin-right: 14px;
+    padding-left: 7px;
 }
