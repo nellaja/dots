@@ -19,10 +19,9 @@ waybar
 slurp
 grim
 wev
-blueman
+bluetui
 brightnessctl
 imv
-network-manager-applet
 nwg-look
 pavucontrol
 thunar
