@@ -1,7 +1,0 @@
-intel-media-driver
-libva-intel-driver
-lib32-libva-intel-driver
-lib32-mesa
-lib32-vulkan-intel
-mesa
-vulkan-intel
