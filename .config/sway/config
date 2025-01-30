@@ -28,6 +28,12 @@ set $menu fuzzel
 # Set file manager.
 set $fm thunar
 
+# Set primary browser.
+set $pbrowser librewolf
+
+# Set secondary browser.
+set $sbrowser firefox
+
 # Set path to wallpapers.
 set $wallpaper ~/wallpaper.png
 #set $wallpaper_lock ~/wallpaper_lock.png
@@ -100,9 +106,12 @@ input type:keyboard {
     # Open the file manager.
     bindsym $mod+f exec $fm
 
-    # Open a web browser.
-    bindsym $mod+i exec firefox
-    
+    # Open primary browser.
+    bindsym $mod+i exec $pbrowser
+
+    # Open secondary browser
+    bindsym $mod+Shift+i exec $sbrowser
+
     # Screenshots.
     bindsym $mod+p exec grim
     bindsym $mod+Shift+p exec slurp | grim -g -
