@@ -20,8 +20,8 @@ set $up k
 set $right l
 
 # Set terminal emulator.
+#set $term foot --config="$HOME/.config/foot/foot_nvim.ini"
 set $term foot
-
 # Set application launcher.
 set $menu fuzzel
 
@@ -29,7 +29,7 @@ set $menu fuzzel
 set $fm thunar
 
 # Set primary browser.
-set $pbrowser librewolf
+set $pbrowser firefox
 
 # Set secondary browser.
 set $sbrowser firefox
