@@ -19,9 +19,12 @@ set $down j
 set $up k
 set $right l
 
-# Set terminal emulator.
-#set $term foot --config="$HOME/.config/foot/foot_nvim.ini"
+# Set 'GUI' editor (this is way to open helix in new terminal with different font).
+set $editor foot --config="$HOME/.config/foot/foot_hx.ini" helix
+
+# Set terminal emulator. 
 set $term foot
+
 # Set application launcher.
 set $menu fuzzel
 
@@ -29,10 +32,10 @@ set $menu fuzzel
 set $fm thunar
 
 # Set primary browser.
-set $pbrowser firefox
+set $browser firefox
 
-# Set secondary browser.
-set $sbrowser firefox
+# Set alternative browser.
+set $browser_alt firefox
 
 # Set path to wallpapers.
 set $wallpaper ~/wallpaper.png
@@ -107,10 +110,13 @@ input type:keyboard {
     bindsym $mod+f exec $fm
 
     # Open primary browser.
-    bindsym $mod+i exec $pbrowser
+    bindsym $mod+i exec $browser
 
     # Open secondary browser
-    bindsym $mod+Shift+i exec $sbrowser
+    bindsym $mod+Shift+i exec $browser_alt
+
+    # Open editor.
+    bindsym $mod+e exec $editor
 
     # Screenshots.
     bindsym $mod+p exec grim
