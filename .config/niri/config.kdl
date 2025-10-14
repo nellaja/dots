@@ -1,0 +1,310 @@
+// This config is in the KDL format: https://kdl.dev
+// "/-" comments out the following node.
+// Check the wiki for a full description of the configuration:
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
+
+
+// TOP LEVEL CONFIGURATION
+
+spawn-at-startup "swayidle" "-w"
+//spawn-at-startup "fcitx5"
+spawn-at-startup "sh" "-c" "swaybg -i ~/wallpaper.png -m fill"
+spawn-at-startup "swayosd-server"
+spawn-at-startup "/usr/lib/polkit-kde-authentication-agent-1"
+//spawn-at-startup "sh" "-c" "wl-clip-persist --clipboard regular"
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "dms" "run"
+
+prefer-no-csd
+
+screenshot-path "~/Pictures/Screenshots/%Y-%m-%d %H-%M-%S Screenshot.png"
+
+environment {
+	DISPLAY ":0"
+	QT_QPA_PLATFORM "wayland"
+	SDL_VIDEODRIVER "wayland"
+	MOZ_ENABLE_WAYLAND "1"
+	ELECTRON_OZONE_PLATFORM_HINT "wayland"
+	OZONE_PLATFORM "wayland"
+}
+
+cursor {
+	xcursor-size 24
+	// xcursor-theme
+	hide-after-inactive-ms 5000
+}
+
+overview {
+	zoom 0.5
+	backdrop-color "#21272a"
+	workspace-shadow {
+		off
+	}
+}
+
+/- xwayland-satellite {
+	path "xwayland-satellite"
+}
+
+clipboard {
+	disable-primary
+}
+
+hotkey-overlay {
+	skip-at-startup
+	// hide-not-bound
+}
+
+
+// INPUT CONFIGURATION
+
+input {
+	keyboard {
+        	xkb {
+            		// For more information, see xkeyboard-config(7).
+            		layout "us"
+            		options "compose:ralt"
+        	}
+        
+		repeat-rate 40
+		repeat-delay 600
+        	// numlock
+    	}
+
+    	mouse {
+        	accel-speed -0.1
+    	}
+
+	// disable-power-key-handling	
+    	// warp-mouse-to-focus
+     	focus-follows-mouse 
+}
+
+
+// OUTPUT CONFIGURATION
+
+// You can configure outputs by their name, which you can find
+// by running `niri msg outputs` while inside a niri instance.
+output "DP-1" {
+    //  mode "3840x2160@120.000"
+    scale 1.666667
+    transform "normal"
+    variable-refresh-rate on-demand=true
+    //background-color "#21272a"
+}
+
+
+// LAYOUT CONFIGURATION
+
+layout {
+    gaps 6
+    
+    struts {
+    	left 0
+	right 0
+	top 6
+	bottom 6
+    }
+    
+    center-focused-column "never"
+    //always-center-single-column
+    default-column-display "normal"
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+   
+    preset-window-heights { 
+        proportion 0.5
+	proportion 1.0
+    }
+
+    default-column-width { proportion 0.5; }
+
+    focus-ring {
+    	off
+    }	  
+
+    border {
+        width 2.4
+        active-color "#4589ff"
+        inactive-color "#4d5358"
+        urgent-color "#fa4d56"
+    }
+
+    shadow {
+        // on
+    }
+
+    tab-indicator {
+	hide-when-single-tab
+    	place-within-column
+	gap 2.4
+	width 2.4
+	// length total-proportion=0.5
+	position "left"
+	gaps-between-tabs 2.4
+    }
+
+    insert-hint {
+	color "#4589ff"
+    }
+
+    background-color "#21272a"
+}
+
+
+// KEY BINDINGS CONFIGURATION
+
+binds {
+    
+    // Hotkey overlay.
+    Mod+Slash { show-hotkey-overlay; }
+
+    // Overview toggle.
+    Mod+O repeat=false { toggle-overview; }
+
+    // Programs.
+    Mod+Return hotkey-overlay-title="Terminal" { spawn "foot"; }
+    Mod+Space hotkey-overlay-title="Application Launcher" { spawn "fuzzel"; }
+    Mod+F hotkey-overlay-title="File Manager" { spawn "nautilus"; }
+    Mod+B hotkey-overlay-title="Firefox" {spawn "firefox"; }
+    //Mod+Shift+B hotkey-overlay-title="Alternate Browser" {spawn "XXX"; } 
+    //Mod+E hotkey-overlay-title="Helix" {spawn "XXX"; } 
+
+    // Media
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "raise"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "lower"; }
+    Alt+XF86AudioRaiseVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "+1"; }
+    Alt+XF86AudioLowerVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "-1"; }
+    //XF86AudioMute        
+    //XF86AudioMicMute     
+    //XF86MonBrightnessUp
+    //XF86MonBrightnessDown
+    
+    XF86AudioNext allow-when-locked=true { spawn "swayosd-client" "--playerctl" "next"; }
+    XF86AudioPause allow-when-locked=true { spawn "swayosd-client" "--playerctl" "play-pause"; }
+    XF86AudioPlay allow-when-locked=true { spawn "swayosd-client" "--playerctl" "play-pause"; }
+    XF86AudioPrev allow-when-locked=true { spawn "swayosd-client" "--playerctl" "previous"; }
+
+    //Switch audio output with Super + Mute
+	//bindld = SUPER, XF86AudioMute, Switch audio output, exec, omarchy-cmd-audio-switch
+    
+    // Screenshots.
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+
+    // Close window.
+    Mod+Q { close-window; }
+
+    // Change window focus.
+    Mod+Left  { focus-column-left; }
+    Mod+Down  { focus-window-down; }
+    Mod+Up    { focus-window-up; }
+    Mod+Right { focus-column-right; }
+    Mod+H     { focus-column-left; }
+    Mod+J     { focus-window-down; }
+    Mod+K     { focus-window-up; }
+    Mod+L     { focus-column-right; }
+
+    Mod+Home  { focus-column-first; }
+    Mod+End   { focus-column-last; }
+    
+    Mod+WheelScrollDown      { focus-column-right; }
+    Mod+WheelScrollUp        { focus-column-left; }
+    
+    // Shift window position in workspace.
+    Mod+Shift+Left  { move-column-left; }
+    Mod+Shift+Down  { move-window-down; }
+    Mod+Shift+Up    { move-window-up; }
+    Mod+Shift+Right { move-column-right; }
+    Mod+Shift+H     { move-column-left; }
+    Mod+Shift+J     { move-window-down; }
+    Mod+Shift+K     { move-window-up; }
+    Mod+Shift+L     { move-column-right; }
+
+    Mod+Shift+Home { move-column-to-first; }
+    Mod+Shift+End  { move-column-to-last; }
+
+    // Change workspace focus.
+    Mod+Ctrl+Up        { focus-workspace-up; }
+    Mod+Ctrl+Down      { focus-workspace-down; }
+    Mod+Ctrl+K         { focus-workspace-up; }
+    Mod+Ctrl+J         { focus-workspace-down; }
+
+    Mod+Ctrl+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+    Mod+Ctrl+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+
+    Mod+Ctrl+1 { focus-workspace 1; }
+    Mod+Ctrl+2 { focus-workspace 2; }
+    Mod+Ctrl+3 { focus-workspace 3; }
+    Mod+Ctrl+4 { focus-workspace 4; }
+    Mod+Ctrl+5 { focus-workspace 5; }
+    Mod+Ctrl+6 { focus-workspace 6; }
+    Mod+Ctrl+7 { focus-workspace 7; }
+    Mod+Ctrl+8 { focus-workspace 8; }
+    Mod+Ctrl+9 { focus-workspace 9; }
+
+    // Change workspace order.
+    Mod+Ctrl+Page_Down { move-workspace-down; }
+    Mod+Ctrl+Page_Up   { move-workspace-up; }
+
+    // Move window to new workspace.
+    Mod+Shift+Ctrl+Down { move-column-to-workspace-down; }
+    Mod+Shift+Ctrl+Up   { move-column-to-workspace-up; }
+    Mod+Shift+Ctrl+J    { move-column-to-workspace-down; }
+    Mod+Shift+Ctrl+K    { move-column-to-workspace-up; }
+    
+    Mod+Shift+Ctrl+1 { move-column-to-workspace 1; }
+    Mod+Shift+Ctrl+2 { move-column-to-workspace 2; }
+    Mod+Shift+Ctrl+3 { move-column-to-workspace 3; }
+    Mod+Shift+Ctrl+4 { move-column-to-workspace 4; }
+    Mod+Shift+Ctrl+5 { move-column-to-workspace 5; }
+    Mod+Shift+Ctrl+6 { move-column-to-workspace 6; }
+    Mod+Shift+Ctrl+7 { move-column-to-workspace 7; }
+    Mod+Shift+Ctrl+8 { move-column-to-workspace 8; }
+    Mod+Shift+Ctrl+9 { move-column-to-workspace 9; }
+
+    // Move windows into and out of columns.
+    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+    Mod+Comma  { consume-window-into-column; }
+    Mod+Period { expel-window-from-column; }
+
+    // Center windows.
+    Mod+C { center-column; }
+    Mod+Ctrl+C { center-visible-columns; }
+
+    // Resize windows.
+    Mod+R { switch-preset-column-width; }
+    Mod+Shift+R { switch-preset-window-height; }
+    
+    Mod+M { maximize-column; }
+    Mod+Shift+M { fullscreen-window; }
+    Mod+Ctrl+M { expand-column-to-available-width; }
+
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+
+    // Floating windows.
+    Mod+V       { toggle-window-floating; }
+    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+
+    // Toggle tabbed column mode.
+    Mod+T { toggle-column-tabbed-display; }
+
+    // Escape hatch. 
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+    // The quit action will show a confirmation dialog to avoid accidental exits.
+    Mod+Shift+E { quit; }
+    Ctrl+Alt+Delete { quit; }
+
+    // Powers off the monitors.
+    Mod+Shift+P { power-off-monitors; }
+}
